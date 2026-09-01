@@ -1,0 +1,1016 @@
+/* ==========================================================================
+   NEXORITHM 2026 - COMPONENTS STYLESHEET
+   Navbar, Hero, Countdown, Cards, Forms, Modals, Admin Table, Pass Badge
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BUTTONS & PILLS (Magnetic & Pearl / Ink Variants)
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.35s var(--ease-out-expo);
+  will-change: transform;
+  max-width: 100%;
+  text-align: center;
+}
+
+.btn:active {
+  transform: scale(0.97) translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-cyan) 0%, #00a2ff 100%);
+  color: #040812;
+  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.35);
+}
+.btn-primary:hover {
+  box-shadow: 0 12px 32px rgba(0, 240, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-pearl {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  color: #090e18;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.btn-pearl:hover {
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-pearl-sm {
+  padding: 8px 18px;
+  font-size: 13px;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  color: #090e18;
+  border-radius: var(--radius-full);
+}
+.btn-pearl-sm:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.2);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-glass-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+}
+.btn-glass-sm:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--brand-cyan);
+}
+
+.btn-action-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.btn-action-icon:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   2. NAVBAR
+   -------------------------------------------------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  height: var(--nav-height);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.navbar.nav-scrolled {
+  height: 68px;
+  background: rgba(5, 7, 12, 0.88);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.navbar.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  height: clamp(36px, 5vw, 44px);
+  width: auto;
+}
+
+.nav-rail {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border-radius: var(--radius-full);
+  background: rgba(14, 21, 37, 0.6);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-link {
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.nav-link:hover {
+  color: #ffffff;
+}
+.nav-link.is-active {
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--brand-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.2);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 72px;
+  inset-inline: var(--gutter);
+  background: rgba(9, 14, 24, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  z-index: 99;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s var(--ease-out-expo);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-drawer.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer a {
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.mobile-drawer a.is-active {
+  color: var(--brand-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   3. HERO SECTION & SPECIFIC HEADING HIERARCHY
+   -------------------------------------------------------------------------- */
+.hero-section {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(24px, 5vh, 50px);
+  text-align: center;
+  position: relative;
+  max-width: 100%;
+}
+
+/* Top-Right Highlight Text Ribbon */
+.hero-top-ribbon-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: clamp(16px, 3vh, 24px);
+  max-width: 100%;
+}
+
+.hero-affiliation-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 1.6vw, 12px);
+  color: var(--brand-purple);
+  max-width: 100%;
+  text-align: center;
+}
+
+.hero-top-highlight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  font-family: var(--font-mono);
+  font-size: clamp(10.5px, 1.8vw, 12.5px);
+  font-weight: 600;
+  color: var(--brand-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+  margin-left: auto;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Heading 1: Largest, most prominent text on the page */
+.hero-college-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 5.2vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 255, 255, 0.2);
+  margin-bottom: 12px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Heading 2: Department of CSE & AIDS */
+.hero-dept-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.88rem, 2.2vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--brand-cyan);
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  margin-bottom: 12px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Heading 3: "Presents" */
+.hero-presents-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.hero-presents-text::before,
+.hero-presents-text::after {
+  content: '';
+  display: inline-block;
+  width: clamp(20px, 4vw, 40px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Heading 4: Stylized event title (scaled smaller than college name) */
+.hero-event-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.8vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Heading 5: Tagline */
+.hero-tagline-text {
+  font-size: clamp(0.95rem, 1.8vw, 1.35rem);
+  color: #f1f5f9;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Heading 6: Sub-line */
+.hero-subline-text {
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 1.3vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-purple);
+  margin-bottom: 28px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(28px, 4.5vh, 48px);
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   4. COUNTDOWN TIMER
+   -------------------------------------------------------------------------- */
+.countdown-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(6px, 1.8vw, 20px);
+  max-width: 480px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.countdown-box {
+  min-width: 0;
+  width: 100%;
+  padding: clamp(10px, 1.8vw, 18px) 6px;
+  background: rgba(14, 21, 37, 0.65);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.countdown-digits {
+  font-family: var(--font-mono);
+  font-size: clamp(1.4rem, 3.4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.countdown-label {
+  font-family: var(--font-mono);
+  font-size: clamp(9px, 1.4vw, 11px);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+/* --------------------------------------------------------------------------
+   5. HIGHLIGHTS STRIP (DATE, TIME, VENUE, CHIEF GUEST - NO PRIZE POOL)
+   -------------------------------------------------------------------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  padding: clamp(18px, 2.5vw, 24px) 16px;
+  text-align: center;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glass-hover);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+.stat-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-cyan);
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  color: #ffffff;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.stat-subtext {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 4px;
+  font-family: var(--font-mono);
+}
+
+/* --------------------------------------------------------------------------
+   6. ABOUT SYMPOSIUM & COLLEGE SECTION
+   -------------------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.about-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.about-feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-cyan);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. HORIZONTAL CAROUSEL SECTION
+   -------------------------------------------------------------------------- */
+.carousel-wrapper {
+  position: relative;
+}
+
+.horizontal-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-block: 14px 24px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.horizontal-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  min-width: clamp(260px, 80vw, 320px);
+  max-width: 320px;
+  scroll-snap-align: start;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   8. EVENTS CATALOG & FILTER TABS
+   -------------------------------------------------------------------------- */
+.events-tab-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-full);
+  background: rgba(14, 21, 37, 0.6);
+  border: 1px solid var(--border-glass);
+  margin-inline: auto;
+  margin-bottom: 32px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.event-tab-btn {
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: clamp(12px, 1.8vw, 13.5px);
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.event-tab-btn.is-active {
+  background: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-purple) 100%);
+  color: #040812;
+  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.35);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 24px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   9. REGISTRATION FORM & PAYMENT WIDGET
+   -------------------------------------------------------------------------- */
+.reg-container-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(8, 12, 22, 0.7);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--brand-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2);
+  background: rgba(14, 21, 37, 0.9);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2300f0ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.event-check-card {
+  display: block;
+  position: relative;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: rgba(8, 12, 22, 0.6);
+  border: 1px solid var(--border-glass);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.event-check-card:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+}
+.event-check-card.is-selected {
+  background: rgba(0, 240, 255, 0.08);
+  border-color: var(--brand-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+.event-check-card.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+.event-check-card.is-disabled:hover {
+  border-color: var(--border-glass);
+}
+
+.event-checkbox {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand-cyan);
+}
+
+/* UPI Payment Widget Card */
+.upi-payment-card {
+  background: linear-gradient(180deg, rgba(14, 21, 37, 0.8) 0%, rgba(9, 14, 24, 0.95) 100%);
+  border: 1px solid var(--brand-cyan);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+.qr-code-wrapper {
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 16px;
+  display: inline-block;
+  margin-block: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+}
+
+.dropzone-box {
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dropzone-box.is-dragover {
+  border-color: var(--brand-cyan);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   10. MODALS
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(2, 4, 8, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-out-expo), visibility 0.35s;
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(10, 16, 28, 0.96);
+  border: 1px solid var(--border-glass-hover);
+  border-radius: var(--radius-lg);
+  padding: clamp(20px, 3.5vw, 32px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), var(--glow-cyan);
+  transform: scale(0.94) translateY(12px);
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.modal-backdrop.is-open .modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------------
+   11. DELEGATE PARTICIPANT PASS (PRINTABLE BADGE)
+   -------------------------------------------------------------------------- */
+.delegate-pass-card {
+  background: linear-gradient(135deg, #090e18 0%, #10192e 100%);
+  border: 2px solid var(--brand-cyan);
+  border-radius: 18px;
+  padding: clamp(18px, 3vw, 28px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 240, 255, 0.25);
+  max-width: 100%;
+}
+
+.delegate-pass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--brand-cyan), var(--brand-purple), var(--brand-pink));
+}
+
+/* --------------------------------------------------------------------------
+   12. ADMIN PORTAL (DASHBOARD & DATA TABLE)
+   -------------------------------------------------------------------------- */
+.admin-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+  background: rgba(8, 12, 22, 0.7);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.admin-table th {
+  padding: 12px 16px;
+  background: rgba(14, 21, 37, 0.85);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-cyan);
+  border-bottom: 1px solid var(--border-glass);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-table-row:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* --------------------------------------------------------------------------
+   13. FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+  border-top: 1px solid var(--border-glass);
+  background: rgba(4, 6, 10, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-block: 50px 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* --------------------------------------------------------------------------
+   14. COMPREHENSIVE RESPONSIVE BREAKPOINTS & MOBILE FIXES
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .reg-container-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-rail, .nav-actions .btn-glass, .nav-actions .btn-primary {
+    display: none;
+  }
+  .nav-toggle-btn {
+    display: block;
+  }
+  .mobile-drawer {
+    display: flex;
+  }
+  .hero-top-ribbon-bar {
+    justify-content: center;
+  }
+  .hero-top-highlight {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    padding-top: 10px;
+    padding-bottom: 36px;
+  }
+  .hero-college-title {
+    font-size: clamp(1.35rem, 5.8vw, 2.2rem);
+    line-height: 1.14;
+  }
+  .hero-dept-subtitle {
+    font-size: clamp(0.82rem, 3.4vw, 1.15rem);
+    line-height: 1.3;
+  }
+  .hero-event-title {
+    font-size: clamp(1.2rem, 4.8vw, 1.9rem);
+  }
+  .hero-tagline-text {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
+  .hero-subline-text {
+    font-size: clamp(0.75rem, 2.6vw, 0.95rem);
+    letter-spacing: 0.12em;
+    margin-bottom: 22px;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+  .hero-top-ribbon-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-affiliation-badge,
+  .hero-top-highlight {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-presents-text::before,
+  .hero-presents-text::after {
+    width: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-college-title {
+    font-size: 1.25rem;
+  }
+  .countdown-digits {
+    font-size: 1.25rem;
+  }
+  .countdown-box {
+    padding: 8px 4px;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #pass-modal, #pass-modal * {
+    visibility: visible;
+  }
+  #pass-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #ffffff !important;
+  }
+  .modal-close-btn, .btn {
+    display: none !important;
+  }
+}
