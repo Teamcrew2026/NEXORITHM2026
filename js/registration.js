@@ -122,8 +122,8 @@ class NexRegistration {
       return;
     }
 
-    if (file.size > 12 * 1024 * 1024) {
-      this.showToast('Image size exceeds 12MB limit', 'error');
+    if (file.size > 10 * 1024 * 1024) {
+      this.showToast('Image size exceeds 10MB limit. Please use a smaller image.', 'error');
       return;
     }
 
@@ -131,19 +131,16 @@ class NexRegistration {
     reader.onload = (event) => {
       const img = new Image();
       img.onload = () => {
-        // Resize to max 1000px and compress to JPEG ~80KB-150KB for fast, reliable upload on InfinityFree
-        const maxDimension = 1000;
+        // Resize image to stay below 1 Megapixel (1,000,000 total pixels)
+        const MAX_PIXELS = 1_000_000;
         let width = img.width;
         let height = img.height;
+        const totalPixels = width * height;
 
-        if (width > maxDimension || height > maxDimension) {
-          if (width > height) {
-            height = Math.round((height * maxDimension) / width);
-            width = maxDimension;
-          } else {
-            width = Math.round((width * maxDimension) / height);
-            height = maxDimension;
-          }
+        if (totalPixels > MAX_PIXELS) {
+          const scale = Math.sqrt(MAX_PIXELS / totalPixels);
+          width = Math.floor(width * scale);
+          height = Math.floor(height * scale);
         }
 
         const canvas = document.createElement('canvas');
@@ -152,7 +149,8 @@ class NexRegistration {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
 
-        this.uploadedScreenshotBase64 = canvas.toDataURL('image/jpeg', 0.8);
+        // Compress to JPEG at 60% quality to keep file size small
+        this.uploadedScreenshotBase64 = canvas.toDataURL('image/jpeg', 0.6);
 
         const previewContainer = document.getElementById('screenshot-preview-container');
         const previewImg = document.getElementById('screenshot-preview-img');

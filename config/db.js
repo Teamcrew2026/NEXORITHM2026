@@ -34,8 +34,8 @@ const seedDefaultAdmin = async () => {
   try {
     const adminCount = await Admin.countDocuments();
     if (adminCount === 0) {
-      const defaultUser = process.env.DEFAULT_ADMIN_USER || 'admin';
-      const defaultPass = process.env.DEFAULT_ADMIN_PASS || 'nexorithm@2026';
+      const defaultUser = process.env.DEFAULT_ADMIN_USER || 'nexorithm';
+      const defaultPass = process.env.DEFAULT_ADMIN_PASS || 'cybercrew';
       
       const salt = await bcrypt.genSalt(10);
       const passwordHash = await bcrypt.hash(defaultPass, salt);
