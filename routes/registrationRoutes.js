@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
       teamSize,
       teamMembers,
       amount,
+      foodPreference,
       paymentMethod,
       transactionId,
       utr,
@@ -50,7 +51,7 @@ router.post('/', async (req, res) => {
     const actualEmail = (email || '').trim();
     const actualPhone = (phone || '').trim();
     const actualUtr = (transactionId || utr || '').trim();
-    const actualAmount = parseFloat(amount) || 150.00;
+    const actualAmount = parseFloat(amount) || 250.00;
 
     // Validation
     if (!actualName) {
@@ -119,6 +120,7 @@ router.post('/', async (req, res) => {
       teamSize: parseInt(teamSize) || 1,
       teamMembers: Array.isArray(teamMembers) ? teamMembers : [actualName],
       amount: actualAmount,
+      foodPreference: foodPreference || 'Vegetarian',
       paymentMethod: paymentMethod || 'UPI / GPay',
       transactionId: actualUtr,
       screenshot: screenshotPath,

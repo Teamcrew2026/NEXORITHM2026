@@ -388,6 +388,8 @@ class NexAdmin {
     document.getElementById('modal-detail-events').textContent = eventNames;
     document.getElementById('modal-detail-amount').textContent = `₹${record.amount}`;
     document.getElementById('modal-detail-utr').textContent = record.transactionId;
+    const foodDetailEl = document.getElementById('modal-detail-food');
+    if (foodDetailEl) foodDetailEl.textContent = record.foodPreference === 'Non-Vegetarian' ? '🍗 Non-Vegetarian' : '🥦 Vegetarian';
 
     const imgContainer = document.getElementById('modal-detail-screenshot-container');
     const imgEl = document.getElementById('modal-detail-screenshot-img');
@@ -499,8 +501,9 @@ class NexAdmin {
     const email = document.getElementById('spot-email')?.value.trim();
     const phone = document.getElementById('spot-phone')?.value.trim();
     const eventId = document.getElementById('spot-event')?.value;
-    const amount = Number(document.getElementById('spot-amount')?.value) || 150;
+    const amount = Number(document.getElementById('spot-amount')?.value) || 250;
     const utr = document.getElementById('spot-utr')?.value.trim() || 'CASH/SPOT-ENTRY';
+    const foodPreference = document.getElementById('spot-food')?.value || 'Vegetarian';
 
     if (!name || !college || !email || !phone) {
       alert('Please fill required fields.');
@@ -520,6 +523,7 @@ class NexAdmin {
       teamSize: 1,
       teamMembers: [name],
       amount,
+      foodPreference,
       paymentMethod: 'Cash / Spot QR',
       transactionId: utr,
       screenshot: '',

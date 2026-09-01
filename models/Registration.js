@@ -64,7 +64,12 @@ const registrationSchema = new mongoose.Schema({
   },
   amount: {
     type: Number,
-    default: 150.00
+    default: 250.00
+  },
+  foodPreference: {
+    type: String,
+    enum: ['Vegetarian', 'Non-Vegetarian'],
+    default: 'Vegetarian'
   },
   paymentMethod: {
     type: String,

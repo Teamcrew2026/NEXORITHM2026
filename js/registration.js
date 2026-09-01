@@ -98,6 +98,15 @@ class NexRegistration {
     if (form) {
       form.addEventListener('submit', (e) => this.handleFormSubmit(e));
     }
+
+    // Food preference card interactive selection
+    document.addEventListener('change', (e) => {
+      if (e.target.matches('input[name="reg-food"]')) {
+        document.querySelectorAll('.food-pref-card').forEach(card => card.classList.remove('is-selected'));
+        const parentCard = e.target.closest('.food-pref-card');
+        if (parentCard) parentCard.classList.add('is-selected');
+      }
+    });
   }
 
   handleFileUpload(e) {
@@ -192,7 +201,7 @@ class NexRegistration {
   }
 
   updateFeeCalculation() {
-    const fee = 150;
+    const fee = 250;
     this.currentTotal = fee;
 
     const feeDisplay = document.getElementById('calculated-fee-amount');
@@ -247,9 +256,15 @@ class NexRegistration {
     const email = document.getElementById('reg-email')?.value.trim();
     const phone = document.getElementById('reg-phone')?.value.trim();
     const transactionId = document.getElementById('reg-transaction-id')?.value.trim();
+    const foodPreference = document.querySelector('input[name="reg-food"]:checked')?.value || '';
 
     if (!fullName || !college || !dept || !year || !email || !phone) {
       this.showToast('Please fill in all mandatory delegate details', 'error');
+      return;
+    }
+
+    if (!foodPreference) {
+      this.showToast('Please select your food preference (Veg / Non-Veg)', 'error');
       return;
     }
 
@@ -292,6 +307,7 @@ class NexRegistration {
       teamSize: 1,
       teamMembers: [fullName],
       amount: this.currentTotal,
+      foodPreference,
       paymentMethod: 'UPI / GPay',
       transactionId,
       screenshot: this.uploadedScreenshotBase64,
@@ -355,6 +371,8 @@ class NexRegistration {
     document.getElementById('pass-dept-display').textContent = `${record.dept} (${record.year})`;
     document.getElementById('pass-events-display').textContent = eventNames;
     document.getElementById('pass-amount-display').textContent = `₹${record.amount} (Paid & Verified)`;
+    const foodEl = document.getElementById('pass-food-display');
+    if (foodEl) foodEl.textContent = record.foodPreference === 'Non-Vegetarian' ? '🍗 Non-Vegetarian' : '🥦 Vegetarian';
     document.getElementById('pass-date-display').textContent = new Date(record.timestamp).toLocaleDateString('en-IN', {
       day: 'numeric',
       month: 'short',
