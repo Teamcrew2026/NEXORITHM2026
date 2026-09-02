@@ -552,6 +552,31 @@
             </div>
           </div>
 
+          <!-- Optional: Add Friends / Group Registration -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <label class="form-label mb-0">Register Friends <span class="text-slate-500 font-normal">(Optional)</span></label>
+                <p class="text-[11px] text-slate-500 font-mono mt-0.5">Coming with friends? Add their details below.</p>
+              </div>
+              <button type="button" id="btn-add-friend"
+                onclick="window.addFriendEntry()"
+                class="btn btn-glass-sm flex items-center gap-1.5 text-xs"
+                style="border-color: rgba(0,240,255,0.3); color: #00f0ff;">
+                <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                Add Person
+              </button>
+            </div>
+
+            <!-- Friends list container -->
+            <div id="friends-list-container" class="flex flex-col gap-3"></div>
+
+            <!-- Empty hint -->
+            <div id="friends-empty-hint" class="text-center py-3 rounded-xl border border-dashed border-white/10 text-[11px] text-slate-500 font-mono">
+              Click <strong class="text-cyan-400">Add Person</strong> to register a friend with you
+            </div>
+          </div>
+
           <button type="submit" class="btn btn-primary w-full py-3.5 text-base font-bold" id="btn-submit-reg">
             <span>Confirm &amp; Generate Delegate Pass</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>

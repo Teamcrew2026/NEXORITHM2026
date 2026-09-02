@@ -510,3 +510,85 @@ window.closePassModal = function() {
 window.printPass = function() {
   window.print();
 };
+
+// =========================================================================
+// OPTIONAL FRIENDS / GROUP REGISTRATION
+// =========================================================================
+
+let friendCount = 0;
+
+window.addFriendEntry = function () {
+  friendCount++;
+  const container = document.getElementById('friends-list-container');
+  const hint = document.getElementById('friends-empty-hint');
+  if (hint) hint.style.display = 'none';
+
+  const card = document.createElement('div');
+  card.id = `friend-card-${friendCount}`;
+  card.style.cssText = `
+    background: rgba(8,12,22,0.7);
+    border: 1px solid rgba(0,240,255,0.2);
+    border-radius: 14px;
+    padding: 14px 16px;
+    position: relative;
+    animation: fadeInUp 0.25s ease;
+  `;
+
+  card.innerHTML = `
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+      <span style="font-size:11px; font-family:var(--font-mono); color:var(--brand-cyan); letter-spacing:0.05em;">
+        PERSON ${friendCount}
+      </span>
+      <button type="button"
+        onclick="window.removeFriendEntry(${friendCount})"
+        title="Remove"
+        style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px;
+               color:#f87171; padding:3px 8px; font-size:11px; cursor:pointer; display:flex; align-items:center; gap:4px;">
+        ✕ Remove
+      </button>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div>
+        <label style="display:block; font-size:11px; font-family:var(--font-mono); color:var(--text-muted); margin-bottom:5px;">
+          PHONE NUMBER
+        </label>
+        <input
+          type="tel"
+          name="friend_phone_${friendCount}"
+          placeholder="10-digit mobile number"
+          maxlength="10"
+          class="form-control"
+          style="font-size:13px; padding:9px 12px;"
+        />
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-family:var(--font-mono); color:var(--text-muted); margin-bottom:5px;">
+          COLLEGE NAME
+        </label>
+        <input
+          type="text"
+          name="friend_college_${friendCount}"
+          placeholder="Their college name"
+          class="form-control"
+          style="font-size:13px; padding:9px 12px;"
+        />
+      </div>
+    </div>
+  `;
+
+  container.appendChild(card);
+
+  // Re-init lucide icons if any
+  if (window.lucide) lucide.createIcons();
+};
+
+window.removeFriendEntry = function (id) {
+  const card = document.getElementById(`friend-card-${id}`);
+  if (card) card.remove();
+
+  const container = document.getElementById('friends-list-container');
+  const hint = document.getElementById('friends-empty-hint');
+  if (hint && container && container.children.length === 0) {
+    hint.style.display = '';
+  }
+};
