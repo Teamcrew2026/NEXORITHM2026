@@ -86,9 +86,9 @@ class NexRegistration {
     const copyUpiBtn = document.getElementById('btn-copy-upi');
     if (copyUpiBtn) {
       copyUpiBtn.addEventListener('click', () => {
-        const upiId = 'nexorithm2026@okaxis';
+        const upiId = 'harshinibala30@oksbi';
         navigator.clipboard.writeText(upiId).then(() => {
-          this.showToast('UPI ID copied to clipboard! (nexorithm2026@okaxis)', 'success');
+          this.showToast('UPI ID copied to clipboard! (harshinibala30@oksbi)', 'success');
         });
       });
     }
@@ -218,7 +218,7 @@ class NexRegistration {
     const qrContainer = document.getElementById('dynamic-upi-qrcode');
     if (!qrContainer) return;
 
-    const upiUrl = `upi://pay?pa=nexorithm2026@okaxis&pn=Nexorithm%202026%20IJCE&am=${amount}&cu=INR&tn=Nexorithm%20Reg%20Fee`;
+    const upiUrl = `upi://pay?pa=harshinibala30@oksbi&pn=Nexorithm%202026%20IJCE&am=${amount}&cu=INR&tn=Nexorithm%20Reg%20Fee`;
     
     // Clear previous QR
     qrContainer.innerHTML = '';
