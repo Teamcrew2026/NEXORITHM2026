@@ -1,19 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
+const cloudinary = require('cloudinary').v2;
 const Registration = require('../models/Registration');
 const { requireAdminAuth } = require('../middleware/auth');
 
-// Ensure uploads directory exists
-const uploadsDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadsDir)) {
-  try {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  } catch (e) {
-    // ignore
-  }
-}
+// Configure Cloudinary (permanent image hosting for payment screenshots)
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 /**
  * @route   POST /api/registration
@@ -86,22 +82,19 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Event selection is required.' });
     }
 
-    // Process Screenshot
+    // Process Screenshot — upload to Cloudinary (permanent hosted URL)
     let screenshotPath = screenshot || '';
     if (typeof screenshot === 'string' && screenshot.startsWith('data:image/')) {
       try {
-        const matches = screenshot.match(/^data:image\/([a-zA-Z0-9]+);base64,(.+)$/);
-        if (matches && matches.length === 3) {
-          const ext = matches[1] === 'jpeg' ? 'jpg' : matches[1];
-          const filename = `proof_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}.${ext}`;
-          const filepath = path.join(uploadsDir, filename);
-          fs.writeFileSync(filepath, Buffer.from(matches[2], 'base64'));
-          screenshotPath = `uploads/${filename}`;
-        }
-      } catch (fileErr) {
-        console.warn('[Screenshot Save Warning]', fileErr.message);
-        // Fallback: keep base64 directly in database
-        screenshotPath = screenshot;
+        const uploadResult = await cloudinary.uploader.upload(screenshot, {
+          folder: 'nexorithm_2026_payments',
+          resource_type: 'image'
+        });
+        screenshotPath = uploadResult.secure_url;
+      } catch (uploadErr) {
+        console.warn('[Cloudinary Upload Warning]', uploadErr.message);
+        // Don't fall back to storing raw base64 in MongoDB — leave empty instead
+        screenshotPath = '';
       }
     }
 
@@ -270,17 +263,8 @@ router.post('/delete', requireAdminAuth, async (req, res) => {
       return res.status(404).json({ success: false, message: `Registration ${id} not found.` });
     }
 
-    // Remove uploaded screenshot file if it exists locally
-    if (record.screenshot && record.screenshot.startsWith('uploads/')) {
-      const filePath = path.join(__dirname, '../', record.screenshot);
-      if (fs.existsSync(filePath)) {
-        try {
-          fs.unlinkSync(filePath);
-        } catch (e) {
-          // ignore
-        }
-      }
-    }
+    // Note: screenshot images are now hosted on Cloudinary (not local disk),
+    // so no local file cleanup is needed here.
 
     await Registration.deleteOne({ id });
 
