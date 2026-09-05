@@ -833,6 +833,19 @@
   transform: rotate(90deg);
 }
 
+/* Registration Inspection Modal — Full Screen Override */
+#admin-detail-modal.modal-backdrop {
+  padding: 0;
+}
+#admin-detail-modal .modal-card {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: 0;
+  overflow-y: auto;
+}
+
 /* --------------------------------------------------------------------------
    11. DELEGATE PARTICIPANT PASS (PRINTABLE BADGE)
    -------------------------------------------------------------------------- */
@@ -1092,7 +1105,7 @@
   }
   #admin-detail-modal .modal-card {
     padding: 20px 16px;
-    max-height: 85vh;
+    max-height: 100vh;
     overflow-y: auto;
   }
 }
