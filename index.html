@@ -132,7 +132,7 @@
       <!-- College Logo — centered above the college name -->
       <div style="display: flex; justify-content: center; margin-bottom: 24px;" class="animate-hero-reveal">
         <img src="assets/college-logo-transparent.png" alt="Infant Jesus College of Engineering Logo"
-          style="height: 200px; width: auto;">
+          style="height: 100px; width: auto;">
       </div>
 
       <!-- 1. "INFANT JESUS COLLEGE OF ENGINEERING" — LARGEST, MOST PROMINENT TEXT -->
@@ -547,8 +547,8 @@
                 <div class="text-[10px] text-slate-500 font-mono mt-1">PNG, JPG, WEBP • Auto-compressed to &lt;1MP</div>
               </div>
               <div id="screenshot-preview-container" class="hidden">
-                <img id="screenshot-preview-img" src="" alt="Payment Preview"
-                  class="max-h-36 mx-auto rounded-lg mb-2" style="cursor: zoom-in;" title="Click to zoom"
+                <img id="screenshot-preview-img" src="" alt="Payment Preview" class="max-h-36 mx-auto rounded-lg mb-2"
+                  style="cursor: zoom-in;" title="Click to zoom"
                   onclick="event.stopPropagation(); window.zoomScreenshotPreview();" />
                 <button type="button" class="text-xs text-rose-400 hover:underline"
                   onclick="event.stopPropagation(); window.removeAttachedScreenshot();">
@@ -1066,15 +1066,15 @@
     <script src="js/registration.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/router.js"></script>
-    <script src="js/app.js"></script>  <!-- Payment Screenshot Zoom Lightbox -->
-  <div id="screenshot-zoom-modal" class="modal-backdrop" onclick="window.closeScreenshotZoom()">
-    <div class="modal-close-btn" onclick="window.closeScreenshotZoom()">
-      <i data-lucide="x" class="w-4 h-4"></i>
+    <script src="js/app.js"></script> <!-- Payment Screenshot Zoom Lightbox -->
+    <div id="screenshot-zoom-modal" class="modal-backdrop" onclick="window.closeScreenshotZoom()">
+      <div class="modal-close-btn" onclick="window.closeScreenshotZoom()">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </div>
+      <img id="screenshot-zoom-img" src="" alt="Payment Screenshot Zoomed"
+        style="max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.8);"
+        onclick="event.stopPropagation();" />
     </div>
-    <img id="screenshot-zoom-img" src="" alt="Payment Screenshot Zoomed"
-      style="max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.8);"
-      onclick="event.stopPropagation();" />
-  </div>
 
 </body>
 
