@@ -2,6 +2,38 @@
  * Nexorithm 2026 - Admin Portal & Registration Management Module
  */
 
+// Force the Registration Inspection modal to true full screen via inline
+// styles with !important priority, so it overrides ANY conflicting CSS
+// no matter where it comes from.
+function forceFullScreenModal(modal) {
+  if (!modal) return;
+  const set = (el, prop, val) => el && el.style.setProperty(prop, val, 'important');
+
+  set(modal, 'position', 'fixed');
+  set(modal, 'top', '0');
+  set(modal, 'left', '0');
+  set(modal, 'right', '0');
+  set(modal, 'bottom', '0');
+  set(modal, 'width', '100vw');
+  set(modal, 'height', '100vh');
+  set(modal, 'max-width', '100vw');
+  set(modal, 'max-height', '100vh');
+  set(modal, 'margin', '0');
+  set(modal, 'padding', '0');
+  set(modal, 'z-index', '999999');
+
+  const card = modal.querySelector('.modal-card');
+  if (card) {
+    set(card, 'width', '100vw');
+    set(card, 'max-width', '100vw');
+    set(card, 'height', '100vh');
+    set(card, 'max-height', '100vh');
+    set(card, 'border-radius', '0');
+    set(card, 'margin', '0');
+    set(card, 'overflow-y', 'auto');
+  }
+}
+
 class NexAdmin {
   constructor() {
     this.isAuthenticated = false;
@@ -405,6 +437,7 @@ class NexAdmin {
     }
 
     modal.classList.add('is-open');
+    forceFullScreenModal(modal);
     if (window.lucide) lucide.createIcons();
   }
 
