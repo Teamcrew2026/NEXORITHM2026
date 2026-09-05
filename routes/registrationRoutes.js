@@ -1,15 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const cloudinary = require('cloudinary').v2;
 const Registration = require('../models/Registration');
 const { requireAdminAuth } = require('../middleware/auth');
-
-// Configure Cloudinary (permanent image hosting for payment screenshots)
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
 
 /**
  * @route   POST /api/registration
@@ -82,20 +74,11 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Event selection is required.' });
     }
 
-    // Process Screenshot — upload to Cloudinary (permanent hosted URL)
-    let screenshotPath = screenshot || '';
+    // Process Screenshot — store the compressed base64 image directly in MongoDB
+    // (avoids needing any external file/image hosting service)
+    let screenshotPath = '';
     if (typeof screenshot === 'string' && screenshot.startsWith('data:image/')) {
-      try {
-        const uploadResult = await cloudinary.uploader.upload(screenshot, {
-          folder: 'nexorithm_2026_payments',
-          resource_type: 'image'
-        });
-        screenshotPath = uploadResult.secure_url;
-      } catch (uploadErr) {
-        console.warn('[Cloudinary Upload Warning]', uploadErr.message);
-        // Don't fall back to storing raw base64 in MongoDB — leave empty instead
-        screenshotPath = '';
-      }
+      screenshotPath = screenshot;
     }
 
     const regId = customId || (isSpot ? `NX-SPOT-${Math.floor(1000 + Math.random() * 9000)}` : `NX-${Math.floor(1000 + Math.random() * 9000)}`);
@@ -263,8 +246,8 @@ router.post('/delete', requireAdminAuth, async (req, res) => {
       return res.status(404).json({ success: false, message: `Registration ${id} not found.` });
     }
 
-    // Note: screenshot images are now hosted on Cloudinary (not local disk),
-    // so no local file cleanup is needed here.
+    // Note: screenshot images are stored directly inside the MongoDB document,
+    // so deleting the registration record automatically removes the image too.
 
     await Registration.deleteOne({ id });
 
