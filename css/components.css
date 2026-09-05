@@ -1075,3 +1075,24 @@
     justify-content: center;
   }
 }
+
+/* Registration Inspection modal — switch to single column on mobile for readability */
+@media (max-width: 640px) {
+  #admin-detail-modal .grid.grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 12px 0;
+  }
+  #admin-detail-modal .grid.grid-cols-2 > div {
+    line-height: 1.6;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  #admin-detail-modal .grid.grid-cols-2 > div:last-child {
+    border-bottom: none;
+  }
+  #admin-detail-modal .modal-card {
+    padding: 20px 16px;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+}
