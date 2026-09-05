@@ -1038,3 +1038,19 @@
     display: none !important;
   }
 }
+
+/* Payment Screenshot Preview — fix image overflow */
+#screenshot-preview-container {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+#screenshot-preview-img {
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}

@@ -219,7 +219,7 @@ class NexRegistration {
     if (!qrContainer) return;
 
     const upiUrl = `upi://pay?pa=harshinibala30@oksbi&pn=Nexorithm%202026%20IJCE&am=${amount}&cu=INR&tn=Nexorithm%20Reg%20Fee`;
-    
+
     // Clear previous QR
     qrContainer.innerHTML = '';
 
@@ -432,7 +432,7 @@ class NexRegistration {
 
     const toast = document.createElement('div');
     toast.className = `custom-toast toast-${type}`;
-    
+
     let iconName = 'info';
     if (type === 'success') iconName = 'check-circle';
     if (type === 'error') iconName = 'alert-triangle';
@@ -456,7 +456,7 @@ class NexRegistration {
   }
 }
 
-window.setupRegistrationView = function(preselectedEventId) {
+window.setupRegistrationView = function (preselectedEventId) {
   if (!window.nexRegistration) {
     window.nexRegistration = new NexRegistration();
   }
@@ -496,18 +496,18 @@ window.setupRegistrationView = function(preselectedEventId) {
   if (window.lucide) lucide.createIcons();
 };
 
-window.removeAttachedScreenshot = function() {
+window.removeAttachedScreenshot = function () {
   if (window.nexRegistration) {
     window.nexRegistration.removeScreenshot();
   }
 };
 
-window.closePassModal = function() {
+window.closePassModal = function () {
   const modal = document.getElementById('pass-modal');
   if (modal) modal.classList.remove('is-open');
 };
 
-window.printPass = function() {
+window.printPass = function () {
   window.print();
 };
 
@@ -591,4 +591,23 @@ window.removeFriendEntry = function (id) {
   if (hint && container && container.children.length === 0) {
     hint.style.display = '';
   }
+};
+
+// Payment Screenshot Zoom Lightbox
+window.zoomScreenshotPreview = function () {
+  const previewImg = document.getElementById('screenshot-preview-img');
+  const zoomModal = document.getElementById('screenshot-zoom-modal');
+  const zoomImg = document.getElementById('screenshot-zoom-img');
+
+  if (!previewImg || !zoomModal || !zoomImg || !previewImg.src) return;
+
+  zoomImg.src = previewImg.src;
+  zoomModal.classList.add('is-open');
+};
+
+window.closeScreenshotZoom = function () {
+  const zoomModal = document.getElementById('screenshot-zoom-modal');
+  const zoomImg = document.getElementById('screenshot-zoom-img');
+  if (zoomModal) zoomModal.classList.remove('is-open');
+  if (zoomImg) zoomImg.src = '';
 };

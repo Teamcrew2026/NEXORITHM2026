@@ -129,6 +129,12 @@
 
       <!-- HEADING HIERARCHY (1 TO 6) -->
 
+      <!-- College Logo — centered above the college name -->
+      <div style="display: flex; justify-content: center; margin-bottom: 24px;" class="animate-hero-reveal">
+        <img src="assets/college-logo-transparent.png" alt="Infant Jesus College of Engineering Logo"
+          style="height: 200px; width: auto;">
+      </div>
+
       <!-- 1. "INFANT JESUS COLLEGE OF ENGINEERING" — LARGEST, MOST PROMINENT TEXT -->
       <h1 class="hero-college-title animate-hero-reveal">
         INFANT JESUS COLLEGE OF ENGINEERING
@@ -542,7 +548,8 @@
               </div>
               <div id="screenshot-preview-container" class="hidden">
                 <img id="screenshot-preview-img" src="" alt="Payment Preview"
-                  class="max-h-36 mx-auto rounded-lg mb-2" />
+                  class="max-h-36 mx-auto rounded-lg mb-2" style="cursor: zoom-in;" title="Click to zoom"
+                  onclick="event.stopPropagation(); window.zoomScreenshotPreview();" />
                 <button type="button" class="text-xs text-rose-400 hover:underline"
                   onclick="event.stopPropagation(); window.removeAttachedScreenshot();">
                   Remove Screenshot
@@ -1059,7 +1066,16 @@
     <script src="js/registration.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/router.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js"></script>  <!-- Payment Screenshot Zoom Lightbox -->
+  <div id="screenshot-zoom-modal" class="modal-backdrop" onclick="window.closeScreenshotZoom()">
+    <div class="modal-close-btn" onclick="window.closeScreenshotZoom()">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </div>
+    <img id="screenshot-zoom-img" src="" alt="Payment Screenshot Zoomed"
+      style="max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.8);"
+      onclick="event.stopPropagation();" />
+  </div>
+
 </body>
 
 </html>
