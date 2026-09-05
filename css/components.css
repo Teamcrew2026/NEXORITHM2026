@@ -1054,3 +1054,24 @@
   display: block;
   border-radius: 12px;
 }
+
+/* Missing utility class — fixes admin dashboard header button row overflow on mobile */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Admin Dashboard header — stack title & buttons cleanly on small screens */
+@media (max-width: 640px) {
+  #admin-dashboard-view > .flex.flex-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #admin-dashboard-view > .flex.flex-wrap > div:last-child {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #admin-dashboard-view > .flex.flex-wrap > div:last-child .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
