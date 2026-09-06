@@ -9,7 +9,7 @@ const EVENTS_DATA = [
   // =========================================================================
   {
     id: 'idea-arena',
-    title: 'IDEA ARENA',
+    title: 'IDEA ARENA – PROJECT PRESENTATION',
     category: 'technical',
     badge: 'Paper & Project Pitch',
     icon: 'lightbulb',
@@ -25,19 +25,20 @@ const EVENTS_DATA = [
     ],
     rounds: [
       {
-        title: 'Phase 1: Abstract & Slide Screening',
-        desc: 'Submit your IEEE-format 1-page abstract and presentation slide deck covering problem statement, methodology, architecture, and expected impact.'
+        title: 'Phase 1: Registration & Abstract Submission',
+        desc: 'Register for the event, then submit your project abstract to the organizers.'
       },
       {
-        title: 'Phase 2: Live Defense & Stage Pitch',
-        desc: '7 minutes live pitch on stage followed by 3 minutes rigorous Q&A with the expert faculty & industry panel.'
+        title: 'Phase 2: Live Project Presentation',
+        desc: 'Present your project on stage within the given time limit.'
       }
     ],
     rules: [
-      'Domains: Artificial Intelligence, Cyber Security, Cloud Computing, IoT & Robotics, Data Analytics, Green Energy Tech.',
-      'Slide deck must adhere to the 10-12 slide limit.',
-      'Working prototypes, hardware demos, or simulation results carry bonus evaluation points.',
-      'Decision of the jury panel is final and indisputable.'
+      'Participants must register before submitting the abstract.',
+      'After registration, the abstract must be sent to the organizers.',
+      'The idea should be original and innovative.',
+      'Participants must present their project within the given time limit.',
+      'Judges’ decision will be final.'
     ]
   },
   {
@@ -47,7 +48,7 @@ const EVENTS_DATA = [
     badge: 'Code & Bug Hunt',
     icon: 'terminal',
     tagline: 'Trace the Logic. Defuse the Bugs. Restore the System.',
-    description: 'Tackle obfuscated code snippets, syntax traps, memory leaks, concurrency race conditions, and logic errors across C, C++, Java, and Python under strict time limits.',
+    description: 'Tackle syntax, logical, and runtime errors in given programs under strict time limits.',
     teamSize: '1 - 2 Members',
     maxTeam: 2,
     timing: '10:45 AM - 12:30 PM',
@@ -58,28 +59,31 @@ const EVENTS_DATA = [
     ],
     rounds: [
       {
-        title: 'Round 1: Rapid Syntax & Compiler Sprint',
-        desc: '20 minutes to find and fix tricky syntax, typecasting, and pointer errors in short multi-language code snippets.'
+        title: 'Round 1: Error Identification',
+        desc: 'Identify the errors present in the given programs.'
       },
       {
-        title: 'Round 2: Logic Bomb & Algorithm Defusal',
-        desc: 'Reverse engineer corrupted algorithm flows, patch runtime exceptions, and optimize the corrected code for performance.'
+        title: 'Round 2: Correction & Submission',
+        desc: 'Correct the identified errors and submit the working program within the time limit.'
       }
     ],
     rules: [
-      'Supported languages: C, C++, Java, and Python.',
-      'No internet access, external documentation, or AI copilot extensions permitted during the contest.',
-      'Evaluation criteria: Accuracy of output, number of test cases passed, and fastest completion time.'
+      'Participants should identify and correct the errors in the given programs.',
+      'Programs may contain syntax, logical, or runtime errors.',
+      'Participants must complete the task within the given time limit.',
+      'No unfair means or external assistance is allowed.',
+      'The participant completing the task accurately in less time will be preferred.',
+      'Judges’ decision will be final.'
     ]
   },
   {
     id: 'ai-prompt-athon',
-    title: 'AI PROMPT-ATHON',
+    title: 'AI PROMPTATHON',
     category: 'technical',
     badge: 'GenAI & Prompt Eng.',
     icon: 'sparkles',
     tagline: 'Master the Art of Human-AI Orchestration.',
-    description: 'Compete in crafting high-precision prompts for Large Language Models (LLMs) and Diffusion Image Generators to solve complex logic challenges and synthesize target artwork.',
+    description: 'Craft an effective prompt on a surprise theme and submit the prompt along with its generated output within the time limit.',
     teamSize: '1 Member',
     maxTeam: 1,
     timing: '01:45 PM - 03:15 PM',
@@ -90,17 +94,21 @@ const EVENTS_DATA = [
     ],
     rounds: [
       {
-        title: 'Round 1: Few-Shot Logic Engineering',
-        desc: 'Construct structured chain-of-thought system prompts to force the LLM to solve intricate reasoning puzzles with zero hallucinations.'
+        title: 'Round 1: Theme Reveal',
+        desc: 'The theme for the prompt will be given on the spot.'
       },
       {
-        title: 'Round 2: High-Fidelity Reverse Image Synthesis',
-        desc: 'Analyze a hidden target image and craft the exact style, lighting, camera angle, and negative prompt parameters to regenerate it.'
+        title: 'Round 2: Prompt Creation & Submission',
+        desc: 'Create an effective prompt based on the theme and submit the prompt with its generated output within 15 minutes.'
       }
     ],
     rules: [
-      'Standard AI model sandboxes will be provided to all contestants on campus systems.',
-      'Evaluation criteria: Token economy, prompt clarity, reasoning accuracy, and image fidelity percentage.'
+      'The theme will be given on the spot.',
+      'Participants must create an effective prompt based on the given theme.',
+      'Time limit: 15 minutes for prompt creation and submission.',
+      'Prompts will be evaluated based on creativity, relevance, and output quality.',
+      'Participants must submit their prompt and generated output within the time limit.',
+      'Judges’ decision will be final.'
     ]
   },
 
@@ -108,135 +116,136 @@ const EVENTS_DATA = [
   // --- NON-TECHNICAL EVENTS (4 EVENTS) ---
   // =========================================================================
   {
-    id: 'hidden-quest',
-    title: 'HIDDEN QUEST',
+    id: 'word-hunt',
+    title: 'WORD HUNT',
     category: 'non-technical',
-    badge: 'Campus Treasure Hunt',
-    icon: 'compass',
-    tagline: 'Decode Cryptic Clues. Conquer the Campus Mystery.',
-    description: 'An adrenaline-fueled campus-wide treasure hunt combining cipher decryption, spatial riddles, secret checkpoint hunting, and mystery unlocking across IJCE.',
-    teamSize: '2 - 4 Members',
-    maxTeam: 4,
-    timing: '01:30 PM - 03:45 PM',
-    venue: 'Campus Central Quadrangle',
+    badge: 'Tamil Word Search',
+    icon: 'search',
+    tagline: 'Clue It. Hunt It. Find It.',
+    description: 'A team challenge where one member gives clues while the other two race to find the hidden Tamil words.',
+    teamSize: '3 Members',
+    maxTeam: 3,
+    timing: 'To Be Announced',
+    venue: 'To Be Announced',
     coordinators: [
-      { name: 'Dinesh Kumar (Final Year CSE)', phone: '+91 94899 66778' },
-      { name: 'Prof. R. Jebaraj (Faculty Coordinator)', phone: '+91 98411 22334' }
+      { name: 'Coordinator Name', phone: '+91 00000 00000' }
     ],
     rounds: [
       {
-        title: 'Phase 1: Binary & Cipher Grid',
-        desc: 'Solve cryptic Caesar, Hex, and visual riddles to locate your team’s starting campus checkpoint.'
+        title: 'Round 1: Clue Giving',
+        desc: 'One team member gives clues without directly revealing the words.'
       },
       {
-        title: 'Phase 2: Checkpoint Clue Trail',
-        desc: 'Follow physical and encrypted clue markers scattered across laboratories, libraries, and campus gardens.'
-      },
-      {
-        title: 'Phase 3: The Final Mystery Unlock',
-        desc: 'Assemble all collected key fragments to discover and unlock the grand mystery vault.'
+        title: 'Round 2: Word Hunting',
+        desc: 'The other two members find the hidden Tamil words within the given time limit.'
       }
     ],
     rules: [
-      'All registered participants must stay together throughout the entire hunt.',
-      'Tampering with clues or entering unauthorized staff areas leads to immediate disqualification.',
-      'The first team to unlock the mystery vault with verified clues wins.'
+      'Each team must consist of 3 members.',
+      '1 member will be given the clue, while the other 2 members must find the words.',
+      'The clue-giver can only give clues and cannot directly find the words.',
+      'The two participants must find the hidden Tamil words within the given time limit.',
+      'The team finding the maximum number of correct words will be the winner.',
+      'Judges’ decision will be final.'
     ]
   },
   {
-    id: 'game-way',
-    title: 'GAME WAY',
+    id: 'game-war-free-fire',
+    title: 'GAME WAR – FREE FIRE',
     category: 'non-technical',
     badge: 'Esports Showdown',
     icon: 'gamepad-2',
-    tagline: 'Unleash Pure Gaming Reflexes & Squad Tactics.',
-    description: 'Engage in intense tactical warfare in Battlegrounds Mobile India (BGMI) and fast-paced mobile gaming showdowns for ultimate campus esports supremacy.',
-    teamSize: 'Squad (4 Members) or Solo',
+    tagline: 'Squad Up. Drop In. Claim the Battleground.',
+    description: 'Squad up and battle it out in Free Fire for ultimate campus esports supremacy, following the organizers’ match instructions.',
+    teamSize: '4 Members',
     maxTeam: 4,
-    timing: '11:00 AM - 03:30 PM',
-    venue: 'Indoor Esports Arena (Room 204)',
+    timing: 'To Be Announced',
+    venue: 'To Be Announced',
     coordinators: [
-      { name: 'Mohamed Ashik (3rd Year CSE)', phone: '+91 91590 12345' },
-      { name: 'Prof. S. Jackson (Faculty Coordinator)', phone: '+91 94421 98765' }
+      { name: 'Coordinator Name', phone: '+91 00000 00000' }
     ],
     rounds: [
       {
-        title: 'Round 1: Qualifier Custom Lobby',
-        desc: 'Battle royale qualifier match where top placement points and kill points qualify for the finals.'
+        title: 'Round 1: Match Briefing',
+        desc: 'Teams receive match instructions from the organizers.'
       },
       {
-        title: 'Round 2: The Championship Showdown',
-        desc: 'Final high-stakes matches across custom tournament lobbies to crown the champion squad.'
+        title: 'Round 2: The Match',
+        desc: 'Teams compete within the given time limit, judged on game performance and scores.'
       }
     ],
     rules: [
-      'Participants must bring their own smartphones with updated game versions installed.',
-      'Emulators, iPads, triggers, hacks, or modified game APKs are strictly prohibited.',
-      'High-speed campus Wi-Fi network will be provided.'
+      'Each team must consist of 4 members.',
+      'Participants will play Free Fire as per the organizers’ instructions.',
+      'The match will be conducted within the given time limit.',
+      'Hacks, cheats, or unfair practices are strictly prohibited.',
+      'Players must follow the match rules.',
+      'Winners will be decided based on game performance and scores.',
+      'Judges’ decision will be final.'
     ]
   },
   {
-    id: 'farm-fresh-finder',
-    title: 'FARM FRESH FINDER',
+    id: 'blind-fold',
+    title: 'BLIND FOLD',
     category: 'non-technical',
-    badge: 'Agri-Market Scavenger',
-    icon: 'sprout',
-    tagline: 'Identify, Trade & Win the Fresh Market Strategy.',
-    description: 'A fun, interactive, and fast-paced game of identifying botanical produce, deciphering market pricing clues, and trading fresh goods through smart budget negotiations.',
-    teamSize: '2 - 3 Members',
-    maxTeam: 3,
-    timing: '11:30 AM - 01:15 PM',
-    venue: 'Open Green Lawn & Seminar Annex',
+    badge: 'Sensory Challenge',
+    icon: 'eye-off',
+    tagline: 'Trust Your Instincts. Complete the Challenge Blind.',
+    description: 'Complete a given task while blindfolded, following the organizers’ instructions carefully.',
+    teamSize: 'Individual',
+    maxTeam: 1,
+    timing: 'To Be Announced',
+    venue: 'To Be Announced',
     coordinators: [
-      { name: 'Praveen Kumar (3rd Year CSE)', phone: '+91 97892 34567' },
-      { name: 'Prof. P. Stella (Faculty Coordinator)', phone: '+91 98425 44332' }
+      { name: 'Coordinator Name', phone: '+91 00000 00000' }
     ],
     rounds: [
       {
-        title: 'Round 1: The Produce & Seed Identifier',
-        desc: 'Fast-paced identification round of rare medicinal herbs, organic produce, indigenous seed varieties, and traditional tools.'
-      },
-      {
-        title: 'Round 2: Fresh Market Auction & Trade',
-        desc: 'Use a virtual currency purse to bid, trade, and assemble the most optimal and valuable market produce basket.'
+        title: 'Round 1: Blindfolded Task',
+        desc: 'Participants complete the assigned task blindfolded, following organizer instructions.'
       }
     ],
     rules: [
-      'Discussion is allowed only among registered participants.',
-      'No use of smartphone image search during the identification challenge.',
-      'Winner is decided based on total identification accuracy score plus net trading profit.'
+      'Participants must complete the given task while blindfolded.',
+      'Instructions given by the organizers must be followed carefully.',
+      'The task should be completed within the given time limit.',
+      'Participants must not remove the blindfold during the challenge.',
+      'Any unsafe or unfair activity will lead to disqualification.',
+      'The fastest successful completion will be preferred.'
     ]
   },
   {
-    id: 'art-30-min',
-    title: '30 MIN ART',
+    id: 'junk-sculpting',
+    title: 'JUNK SCULPTING',
     category: 'non-technical',
-    badge: 'Speed Creative Art',
+    badge: 'Waste-to-Art Challenge',
     icon: 'palette',
-    tagline: '30 Minutes. Infinite Imagination. Pure Artistry.',
-    description: 'Unleash your creative flair in a 30-minute speed art challenge. Craft conceptual drawings, digital artwork, or poster illustrations on an on-the-spot theme.',
-    teamSize: '1 - 2 Members',
-    maxTeam: 2,
-    timing: '01:45 PM - 02:45 PM',
-    venue: 'Multimedia & Design Lab (Lab 5)',
+    tagline: 'Turn Trash Into Treasure.',
+    description: 'Create a creative model using provided waste and junk materials, built entirely during the event.',
+    teamSize: 'To Be Announced',
+    maxTeam: 3,
+    timing: 'To Be Announced',
+    venue: 'To Be Announced',
     coordinators: [
-      { name: 'Rahul Dev (2nd Year AIDS)', phone: '+91 96550 33221' },
-      { name: 'Prof. A. Beulah (Faculty Coordinator)', phone: '+91 94435 66778' }
+      { name: 'Coordinator Name', phone: '+91 00000 00000' }
     ],
     rounds: [
       {
-        title: 'Phase 1: Theme Announcement',
-        desc: 'Surprise creative theme revealed on the spot (e.g., Nature Meets Cyberpunk, or Technology for Humanity).'
+        title: 'Round 1: Materials Distribution',
+        desc: 'Organizers provide and specify the waste/junk materials to be used.'
       },
       {
-        title: 'Phase 2: 30-Minute Drawing Sprint',
-        desc: 'Exactly 30 minutes on the clock to sketch, paint, or digitally illustrate your artwork.'
+        title: 'Round 2: Sculpting',
+        desc: 'Participants build their original sculpture within the given time limit.'
       }
     ],
     rules: [
-      'Drawing sheets will be provided. Participants may bring their own colors, markers, or digital drawing tablets.',
-      'All artwork must be original and completed strictly within the 30-minute timer.',
-      'Evaluation criteria: Concept originality, composition aesthetics, visual impact, and completion within the time limit.'
+      'Participants should create a creative model using the provided waste/junk materials.',
+      'Materials will be provided and specified by the organizers.',
+      'The sculpture must be completed within the given time limit.',
+      'The model should be original and made during the event.',
+      'Evaluation will be based on creativity, innovation, and presentation.',
+      'Judges’ decision will be final.'
     ]
   }
 ];
