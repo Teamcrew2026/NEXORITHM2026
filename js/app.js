@@ -110,7 +110,7 @@ function initNavbar() {
  */
 function initCountdown() {
   // Target: September 21, 2026 09:00:00 IST
-  const targetDate = new Date('2026-09-21T09:00:00+05:30').getTime();
+  const targetDate = new Date('2026-09-19T09:00:00+05:30').getTime();
 
   function update() {
     const now = new Date().getTime();
@@ -269,7 +269,7 @@ function initCursorGlow() {
  * 8. Events Page Grid & Tab Filter Renderer
  */
 function initEventsRenderer() {
-  window.renderEventsList = function(categoryFilter = 'all') {
+  window.renderEventsList = function (categoryFilter = 'all') {
     const grid = document.getElementById('events-catalog-grid');
     if (!grid) return;
 
@@ -334,7 +334,7 @@ function initEventsRenderer() {
 /**
  * 9. Event Details Modal Handler
  */
-window.openEventModal = function(eventId) {
+window.openEventModal = function (eventId) {
   const ev = EVENTS_DATA.find((e) => e.id === eventId);
   if (!ev) return;
 
@@ -397,7 +397,7 @@ window.openEventModal = function(eventId) {
   if (window.lucide) lucide.createIcons();
 };
 
-window.closeEventModal = function() {
+window.closeEventModal = function () {
   const modal = document.getElementById('event-detail-modal');
   if (modal) modal.classList.remove('is-open');
 };
