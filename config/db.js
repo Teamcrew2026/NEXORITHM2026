@@ -13,7 +13,13 @@ try {
 const connectDB = async () => {
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/nexorithm_2026';
-    
+
+    // --- TEMPORARY DEBUG LOG (remove after fixing) ---
+    console.log('[DEBUG] MONGODB_URI is set:', !!process.env.MONGODB_URI);
+    console.log('[DEBUG] URI length:', mongoUri.length);
+    console.log('[DEBUG] URI preview:', mongoUri.slice(0, 35) + ' ... ' + mongoUri.slice(-25));
+    // --------------------------------------------------
+
     const conn = await mongoose.connect(mongoUri, {
       serverSelectionTimeoutMS: 8000,
     });
@@ -36,7 +42,7 @@ const seedDefaultAdmin = async () => {
     if (adminCount === 0) {
       const defaultUser = process.env.DEFAULT_ADMIN_USER || 'nexorithm';
       const defaultPass = process.env.DEFAULT_ADMIN_PASS || 'cybercrew';
-      
+
       const salt = await bcrypt.genSalt(10);
       const passwordHash = await bcrypt.hash(defaultPass, salt);
 
