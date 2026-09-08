@@ -942,6 +942,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <!-- ^ closes #admin-detail-modal (was previously left open, which nested
+       the spot-modal, footer, and scripts below inside this hidden modal) -->
 
     <!-- 4. Spot Registration Modal for Helpdesk -->
     <div id="spot-modal" class="modal-backdrop">
@@ -1066,7 +1069,8 @@
     <script src="js/registration.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/router.js"></script>
-    <script src="js/app.js"></script> <!-- Payment Screenshot Zoom Lightbox -->
+    <script src="js/app.js"></script>
+    <!-- Payment Screenshot Zoom Lightbox -->
     <div id="screenshot-zoom-modal" class="modal-backdrop" onclick="window.closeScreenshotZoom()">
       <div class="modal-close-btn" onclick="window.closeScreenshotZoom()">
         <i data-lucide="x" class="w-4 h-4"></i>
@@ -1075,8 +1079,7 @@
         style="max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.8);"
         onclick="event.stopPropagation();" />
     </div>
-    <script> document.addEventListener('DOMContentLoaded', function () { var adminModal = document.getElementById('admin-detail-modal'); if (adminModal && adminModal.parentElement !== document.body) { document.body.appendChild(adminModal); } });
-    </script>
+
 
 </body>
 

@@ -442,5 +442,26 @@ function initLenisSmoothScroll() {
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    // Keep Lenis's scroll-height in sync whenever page content changes size
+    // (fonts loading, preloader removal, hero reveal animations, dynamic
+    // event cards, etc.) — without this, Lenis can cap scrolling short of
+    // the real bottom of the page and the footer becomes unreachable.
+    const resizeLenis = () => {
+      if (window.lenis) window.lenis.resize();
+    };
+
+    if ('ResizeObserver' in window) {
+      const lenisResizeObserver = new ResizeObserver(() => resizeLenis());
+      lenisResizeObserver.observe(document.body);
+    }
+
+    window.addEventListener('load', resizeLenis);
+    window.addEventListener('resize', resizeLenis, { passive: true });
+
+    // Extra safety net: fonts / preloader / reveal animations can still
+    // shift layout a few hundred ms after load, so nudge Lenis again.
+    setTimeout(resizeLenis, 500);
+    setTimeout(resizeLenis, 1500);
   }
 }
