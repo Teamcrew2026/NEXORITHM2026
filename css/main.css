@@ -58,7 +58,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* CRITICAL FIX: 'smooth' causes severe conflict with Lenis */
   -webkit-text-size-adjust: 100%;
   background-color: var(--bg-dark);
   overflow-x: hidden;

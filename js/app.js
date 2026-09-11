@@ -438,10 +438,10 @@ function initLenisSmoothScroll() {
 
   // Optimized for production to reduce lag on lower-end devices
   window.lenis = new Lenis({
-    lerp: 0.1, // lerp is generally more performant than a fixed duration easing
+    lerp: 0.15, // Increased lerp from 0.1 to 0.15 to reduce floaty delay feeling
     smoothWheel: true,
     smoothTouch: false, // Critical: JS scroll on mobile causes severe lag. Keep native mobile scroll.
-    wheelMultiplier: 0.9, 
+    wheelMultiplier: 1.2, // Slightly faster wheel response
     syncTouch: false
   });
 
