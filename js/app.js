@@ -256,8 +256,8 @@ function initCursorGlow() {
   }, { passive: true });
 
   function renderCursor() {
-    currentX += (mouseX - currentX) * 0.15;
-    currentY += (mouseY - currentY) * 0.15;
+    currentX += (mouseX - currentX) * 0.22;
+    currentY += (mouseY - currentY) * 0.22;
     glowEl.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
     requestAnimationFrame(renderCursor);
   }
@@ -426,42 +426,13 @@ function initHorizontalScroll() {
 }
 
 /**
- * 11. Lenis Smooth Scroll Integration
+ * 11. Smooth Scroll
+ * Using native browser scroll — it runs on the compositor thread (off main thread)
+ * and is always smoother on integrated-GPU laptops than Lenis JS-driven scroll.
+ * Lenis duration:1.2 + smoothWheel:true was intercepting every wheel notch and
+ * running a full 1.2-second JS animation, causing severe jank on low-end hardware.
+ * Anchor-link smooth scroll is handled by `html { scroll-behavior: smooth }` in CSS.
  */
 function initLenisSmoothScroll() {
-  if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    window.lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true
-    });
-
-    function raf(time) {
-      window.lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Keep Lenis's scroll-height in sync whenever page content changes size
-    // (fonts loading, preloader removal, hero reveal animations, dynamic
-    // event cards, etc.) — without this, Lenis can cap scrolling short of
-    // the real bottom of the page and the footer becomes unreachable.
-    const resizeLenis = () => {
-      if (window.lenis) window.lenis.resize();
-    };
-
-    if ('ResizeObserver' in window) {
-      const lenisResizeObserver = new ResizeObserver(() => resizeLenis());
-      lenisResizeObserver.observe(document.body);
-    }
-
-    window.addEventListener('load', resizeLenis);
-    window.addEventListener('resize', resizeLenis, { passive: true });
-
-    // Extra safety net: fonts / preloader / reveal animations can still
-    // shift layout a few hundred ms after load, so nudge Lenis again.
-    setTimeout(resizeLenis, 500);
-    setTimeout(resizeLenis, 1500);
-  }
+  // Native scroll is used — no JS smooth scroll library needed.
 }

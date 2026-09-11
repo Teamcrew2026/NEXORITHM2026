@@ -94,6 +94,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  will-change: transform;
 }
 
 /* Ambient Cursor Glow (Desktop) */
@@ -110,6 +111,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
   transform: translate3d(-100px, -100px, 0);
   transition: opacity 0.3s ease;
   filter: blur(15px);
+  will-change: transform;
 }
 
 /* Typography Utilities */
@@ -159,8 +161,8 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 /* Glassmorphic Foundation */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
@@ -168,8 +170,8 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
   padding: clamp(18px, 3vw, 26px);
@@ -406,8 +408,8 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
   gap: 12px;
   padding: 12px 18px;
   background: rgba(10, 16, 28, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);

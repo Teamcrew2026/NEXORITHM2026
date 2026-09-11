@@ -10,6 +10,7 @@ class NexorithmScene {
 
     this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.isMobile = window.innerWidth < 768;
+    this.isLaptop = window.innerWidth <= 1366 && !this.isMobile; // integrated GPU laptop tier
 
     this.scene = null;
     this.camera = null;
@@ -47,11 +48,13 @@ class NexorithmScene {
       this.renderer = new THREE.WebGLRenderer({
         canvas: this.canvas,
         alpha: true,
-        antialias: !this.isMobile,
+        antialias: false, // disabled globally for smooth performance on laptops
         powerPreference: 'high-performance'
       });
       this.renderer.setSize(window.innerWidth, window.innerHeight);
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, this.isMobile ? 1.5 : 2));
+      // Keep pixel ratio low on laptops/mobiles to reduce GPU fill-rate cost
+      const dprCap = this.isMobile ? 1 : this.isLaptop ? 1.25 : 1.5;
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, dprCap));
       this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
       this.renderer.toneMappingExposure = 1.2;
 
@@ -131,7 +134,7 @@ class NexorithmScene {
     });
 
     // Object 1: Large Central Torus Knot (Glowinn / Algorithmic Ribbon)
-    const torusKnotGeo = new THREE.TorusKnotGeometry(4.5, 1.1, this.isMobile ? 64 : 128, 16);
+    const torusKnotGeo = new THREE.TorusKnotGeometry(4.5, 1.1, (this.isMobile || this.isLaptop) ? 64 : 100, 14);
     const torusKnot = new THREE.Mesh(torusKnotGeo, glossyGlassMat);
     torusKnot.position.set(0, 0, -2);
     torusKnot.userData = { rotSpeedX: 0.003, rotSpeedY: 0.005, rotSpeedZ: 0.002, baseY: 0, floatSpeed: 0.8 };
@@ -175,7 +178,7 @@ class NexorithmScene {
   }
 
   createParticleField() {
-    const count = this.isMobile ? 800 : 2000;
+    const count = this.isMobile ? 600 : this.isLaptop ? 1000 : 2000;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const sizes = new Float32Array(count);
@@ -236,10 +239,12 @@ class NexorithmScene {
   onResize() {
     if (!this.renderer || !this.camera) return;
     this.isMobile = window.innerWidth < 768;
+    this.isLaptop = window.innerWidth <= 1366 && !this.isMobile;
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, this.isMobile ? 1.5 : 2));
+    const dprCap = this.isMobile ? 1 : this.isLaptop ? 1.25 : 1.5;
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, dprCap));
   }
 
   animate() {
@@ -248,8 +253,9 @@ class NexorithmScene {
     const elapsedTime = this.clock.getElapsedTime();
 
     // Smooth Lerp for Mouse and Scroll Parallax
-    this.mouseX += (this.targetMouseX - this.mouseX) * 0.05;
-    this.mouseY += (this.targetMouseY - this.mouseY) * 0.05;
+    // Higher lerp = snappier / less laggy mouse tracking (especially on laptops)
+    this.mouseX += (this.targetMouseX - this.mouseX) * 0.1;
+    this.mouseY += (this.targetMouseY - this.mouseY) * 0.1;
     this.scrollY += (this.targetScrollY - this.scrollY) * 0.08;
 
     if (!this.isReducedMotion) {

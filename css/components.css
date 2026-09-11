@@ -69,8 +69,8 @@
   background: rgba(255, 255, 255, 0.08);
   color: var(--text-main);
   border: 1px solid var(--border-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-glass:hover {
@@ -124,13 +124,14 @@
   display: flex;
   align-items: center;
   transition: all 0.4s var(--ease-out-expo);
+  will-change: transform;
 }
 
 .navbar.nav-scrolled {
   height: 68px;
   background: rgba(5, 7, 12, 0.88);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
   border-bottom: 1px solid var(--border-glass);
 }
 
@@ -166,8 +167,8 @@
   border-radius: var(--radius-full);
   background: rgba(14, 21, 37, 0.6);
   border: 1px solid var(--border-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-link {
@@ -214,8 +215,8 @@
   top: 72px;
   inset-inline: var(--gutter);
   background: rgba(9, 14, 24, 0.97);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-lg);
   padding: 18px;
