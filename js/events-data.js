@@ -15,13 +15,13 @@ const EVENTS_DATA = [
     icon: 'lightbulb',
     tagline: 'Pitch Breakthrough Ideas. Define Tomorrow’s Tech.',
     description: 'Showcase your novel technical research papers, innovative startup concepts, or engineering capstone prototypes in AI/ML, Cloud, Cyber Security, IoT, and Data Science.',
-    teamSize: '1 - 3 Members',
+    teamSize: '1 - 5 Members',
     maxTeam: 3,
     timing: '10:30 AM - 01:00 PM',
     venue: 'IJCE Seminar Hall (Auditorium Block)',
     coordinators: [
-      { name: 'Vigneshwaran P. (Final Year CSE)', phone: '+91 99441 55667' },
-      { name: 'Dr. G. Maria (HOD / CSE & AIDS)', phone: '+91 94862 33445' }
+      { name: 'Simiyon (Final Year CSE)', phone: '+91 9087575137' },
+      { name: 'Mrs.Deborah sarah (Professor - CSE & AIDS)' }
     ],
     rounds: [
       {
@@ -49,13 +49,13 @@ const EVENTS_DATA = [
     icon: 'terminal',
     tagline: 'Trace the Logic. Defuse the Bugs. Restore the System.',
     description: 'Tackle syntax, logical, and runtime errors in given programs under strict time limits.',
-    teamSize: '1 - 2 Members',
-    maxTeam: 2,
+    teamSize: '1 Member',
+    maxTeam: 1,
     timing: '10:45 AM - 12:30 PM',
     venue: 'Software Systems Lab (Lab 1)',
     coordinators: [
-      { name: 'Karthik S. (Final Year CSE)', phone: '+91 94881 23456' },
-      { name: 'Dr. R. David (Faculty Coordinator)', phone: '+91 98421 67890' }
+      { name: 'Kaviyarsan (Final Year CSE)', phone: '+91 7845127211' },
+      { name: 'Mrs.Ramachandrika  (Faculty Coordinator)' }
     ],
     rounds: [
       {
@@ -89,8 +89,8 @@ const EVENTS_DATA = [
     timing: '01:45 PM - 03:15 PM',
     venue: 'AI & Data Science Lab (Lab 4)',
     coordinators: [
-      { name: 'Sanjay V. (3rd Year AIDS)', phone: '+91 93601 44332' },
-      { name: 'Prof. T. Nancy (Faculty Coordinator)', phone: '+91 98402 77889' }
+      { name: 'Anitha (4th Year CSE)', phone: '+91 9360435045' },
+      { name: 'Mrs.Mahalakshmi (Faculty Coordinator)' }
     ],
     rounds: [
       {
@@ -128,7 +128,8 @@ const EVENTS_DATA = [
     timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
-      { name: 'Coordinator Name', phone: '+91 00000 00000' }
+      { name: 'Jaimalini (4th Year CSE)', phone: '+91 9361657711' },
+      { name: 'Mrs. paulselvi (Faculty Coordinator)' }
     ],
     rounds: [
       {
@@ -162,7 +163,8 @@ const EVENTS_DATA = [
     timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
-      { name: 'Coordinator Name', phone: '+91 00000 00000' }
+      { name: 'Vasanthakumar(4th Year CSE)', phone: '+91 8072254953' },
+      { name: 'Mrs.Sangeetha (Faculty Coordinator)' }
     ],
     rounds: [
       {
@@ -197,7 +199,8 @@ const EVENTS_DATA = [
     timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
-      { name: 'Coordinator Name', phone: '+91 00000 00000' }
+      { name: 'Aarthi (Final Year CSE)', phone: '+91 9342202985' },
+      { name: 'Mrs.Ebi Jebamalar (Faculty Coordinator)' }
     ],
     rounds: [
       {
@@ -227,7 +230,8 @@ const EVENTS_DATA = [
     timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
-      { name: 'Coordinator Name', phone: '+91 00000 00000' }
+      { name: 'Madhumitha (4th year CSE)', phone: '+91 9677830490' },
+      { name: 'Mrs.Mohammed Ashiga (CSE HOD)' }
     ],
     rounds: [
       {

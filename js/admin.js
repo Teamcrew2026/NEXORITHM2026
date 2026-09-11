@@ -367,6 +367,24 @@ class NexAdmin {
 
     tbody.innerHTML = rowsHtml;
     if (window.lucide) lucide.createIcons();
+    // Keep stats in sync whenever the table renders (covers initial load)
+    this.updateStats();
+  }
+
+  animateCounter(el, targetValue, prefix = '', suffix = '', duration = 800) {
+    if (!el) return;
+    const startValue = 0;
+    const startTime = performance.now();
+    const update = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(startValue + (targetValue - startValue) * eased);
+      el.textContent = prefix + current.toLocaleString('en-IN') + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
   }
 
   updateStats() {
@@ -393,9 +411,10 @@ class NexAdmin {
     const statCollegesEl = document.getElementById('stat-total-colleges');
     const statEventsEl = document.getElementById('stat-event-breakdown');
 
-    if (statTotalEl) statTotalEl.textContent = totalRegs;
-    if (statRevenueEl) statRevenueEl.textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
-    if (statCollegesEl) statCollegesEl.textContent = collegesSet.size;
+    // Animate numbers counting up for visual feedback
+    this.animateCounter(statTotalEl, totalRegs);
+    this.animateCounter(statRevenueEl, totalRevenue, '₹');
+    this.animateCounter(statCollegesEl, collegesSet.size);
     if (statEventsEl) statEventsEl.textContent = `${techCount} Tech / ${nonTechCount} Non-Tech`;
   }
 

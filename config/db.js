@@ -10,16 +10,22 @@ try {
   // ignore if restricted
 }
 
-const connectDB = async () => {
+const MAX_RETRIES = 5;
+const RETRY_DELAY_MS = 3000; // 3 seconds between attempts
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Attempts to connect to MongoDB, retrying a few times with a short delay
+ * in between. This protects against the brief connection blips that happen
+ * on MongoDB Atlas free-tier (M0) clusters during routine maintenance /
+ * automatic restarts, so a student's registration doesn't fail just
+ * because the cluster happened to restart at that exact moment.
+ */
+const connectDB = async (attempt = 1) => {
+  const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/nexorithm_2026';
+
   try {
-    const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/nexorithm_2026';
-
-    // --- TEMPORARY DEBUG LOG (remove after fixing) ---
-    console.log('[DEBUG] MONGODB_URI is set:', !!process.env.MONGODB_URI);
-    console.log('[DEBUG] URI length:', mongoUri.length);
-    console.log('[DEBUG] URI preview:', mongoUri.slice(0, 35) + ' ... ' + mongoUri.slice(-25));
-    // --------------------------------------------------
-
     const conn = await mongoose.connect(mongoUri, {
       serverSelectionTimeoutMS: 8000,
     });
@@ -31,10 +37,33 @@ const connectDB = async () => {
 
     return conn;
   } catch (error) {
-    console.error(`[MongoDB Connection Error] ${error.message}`);
-    console.warn(`[MongoDB Warning] Make sure your database username & password in .env are correct and Network Access is set to 0.0.0.0/0 in MongoDB Atlas.`);
+    console.error(`[MongoDB Connection Error] Attempt ${attempt}/${MAX_RETRIES}: ${error.message}`);
+
+    if (attempt < MAX_RETRIES) {
+      console.warn(`[MongoDB] Retrying in ${RETRY_DELAY_MS / 1000}s...`);
+      await sleep(RETRY_DELAY_MS);
+      return connectDB(attempt + 1);
+    }
+
+    console.error(`[MongoDB] All ${MAX_RETRIES} connection attempts failed.`);
+    console.warn('[MongoDB Warning] Make sure your database username & password in .env are correct and Network Access is set to 0.0.0.0/0 in MongoDB Atlas.');
   }
 };
+
+// Log unexpected drops / recoveries after the initial connection succeeds
+// (e.g. brief Atlas free-tier restarts). Mongoose's own driver handles the
+// actual reconnect automatically; this just gives visibility in the logs.
+mongoose.connection.on('disconnected', () => {
+  console.warn('[MongoDB] Connection lost. Attempting to reconnect...');
+});
+
+mongoose.connection.on('reconnected', () => {
+  console.log('[MongoDB] Reconnected successfully.');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('[MongoDB] Connection error:', err.message);
+});
 
 const seedDefaultAdmin = async () => {
   try {

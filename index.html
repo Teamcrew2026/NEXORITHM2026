@@ -454,7 +454,9 @@
 
             <div class="form-group">
               <label class="form-label" for="reg-phone">WhatsApp / Contact Number *</label>
-              <input type="tel" id="reg-phone" class="form-control" placeholder="Enter the phone number" required />
+              <input type="tel" id="reg-phone" class="form-control" placeholder="Enter the phone number" required
+                inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
             </div>
           </div>
 
@@ -508,8 +510,7 @@
             </div>
             <div class="text-[11px] text-slate-500 font-mono" id="fee-breakdown-text">Symposium Registration Pass</div>
             <div class="text-[11px] text-emerald-400 mt-2 flex items-center gap-1">
-              <i data-lucide="check" class="w-3.5 h-3.5 inline"></i> Includes Welcome Kit, Certificate &amp; Lunch
-              Buffet
+              <i data-lucide="check" class="w-3.5 h-3.5 inline"></i> Include Lunch Buffet
             </div>
           </div>
 
@@ -537,14 +538,16 @@
           </div>
 
           <div class="form-group mb-6">
-            <label class="form-label">Upload Payment Screenshot <span class="text-rose-400">*</span></label>
+            <label class="form-label">Upload Payment Screenshot <span class="text-rose-400">*</span> <span
+                class="text-rose-400 text-[10px] font-mono">(Mandatory)</span></label>
             <div class="dropzone-box" id="screenshot-dropzone"
               onclick="document.getElementById('reg-screenshot').click()">
-              <input type="file" id="reg-screenshot" accept="image/*" class="hidden" />
+              <input type="file" id="reg-screenshot" accept="image/*" class="hidden" required />
               <div id="dropzone-placeholder">
                 <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
                 <div class="text-xs text-slate-300">Click or drag &amp; drop payment screenshot</div>
-                <div class="text-[10px] text-slate-500 font-mono mt-1">PNG, JPG, WEBP • Auto-compressed to &lt;1MP</div>
+                <div class="text-[10px] text-rose-400 font-mono mt-1">Required • PNG, JPG, WEBP • Auto-compressed to
+                  &lt;1MP</div>
               </div>
               <div id="screenshot-preview-container" class="hidden">
                 <img id="screenshot-preview-img" src="" alt="Payment Preview" class="max-h-36 mx-auto rounded-lg mb-2"
@@ -589,8 +592,12 @@
               </button>
             </div>
 
-            <!-- Friends list container -->
-            <div id="friends-list-container" class="flex flex-col gap-3"></div>
+            <!-- Friends list scroll wrapper -->
+            <div id="friends-scroll-wrapper" style="overflow-x:auto; overflow-y:visible; padding-bottom:6px;">
+              <!-- Friends list container (horizontal row) -->
+              <div id="friends-list-container"
+                style="display:flex; flex-direction:row; gap:12px; min-width:max-content;"></div>
+            </div>
 
             <!-- Empty hint -->
             <div id="friends-empty-hint"
@@ -946,139 +953,148 @@
   <!-- ^ closes #admin-detail-modal (was previously left open, which nested
        the spot-modal, footer, and scripts below inside this hidden modal) -->
 
-    <!-- 4. Spot Registration Modal for Helpdesk -->
-    <div id="spot-modal" class="modal-backdrop">
-      <div class="modal-card relative max-w-md">
-        <button class="modal-close-btn" onclick="window.closeSpotModal()" aria-label="Close">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+  <!-- 4. Spot Registration Modal for Helpdesk -->
+  <div id="spot-modal" class="modal-backdrop">
+    <div class="modal-card relative max-w-md">
+      <button class="modal-close-btn" onclick="window.closeSpotModal()" aria-label="Close">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
 
-        <h3 class="text-xl font-bold text-white mb-2 font-display">On-Campus Spot Registration</h3>
-        <p class="text-xs text-slate-400 mb-4">Fast-track entry creation at the IJCE Registration Desk</p>
+      <h3 class="text-xl font-bold text-white mb-2 font-display">On-Campus Spot Registration</h3>
+      <p class="text-xs text-slate-400 mb-4">Fast-track entry creation at the IJCE Registration Desk</p>
 
-        <form id="spot-reg-form">
-          <div class="form-group mb-3">
-            <label class="form-label" for="spot-name">Delegate Name *</label>
-            <input type="text" id="spot-name" class="form-control" placeholder="Enter the name" required />
+      <form id="spot-reg-form">
+        <div class="form-group mb-3">
+          <label class="form-label" for="spot-name">Delegate Name *</label>
+          <input type="text" id="spot-name" class="form-control" placeholder="Enter the name" required />
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="spot-college">College *</label>
+          <input type="text" id="spot-college" class="form-control" placeholder="Enter the college name" required />
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="spot-dept">Branch / Dept</label>
+          <input type="text" id="spot-dept" class="form-control" placeholder="Enter the department" />
+        </div>
+        <div class="grid grid-cols-2 gap-3 mb-3">
+          <div class="form-group">
+            <label class="form-label" for="spot-email">Email *</label>
+            <input type="email" id="spot-email" class="form-control" placeholder="Enter the email address" required />
           </div>
-          <div class="form-group mb-3">
-            <label class="form-label" for="spot-college">College *</label>
-            <input type="text" id="spot-college" class="form-control" placeholder="Enter the college name" required />
+          <div class="form-group">
+            <label class="form-label" for="spot-phone">Phone *</label>
+            <input type="tel" id="spot-phone" class="form-control" placeholder="Enter the phone number" required
+              inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
           </div>
-          <div class="form-group mb-3">
-            <label class="form-label" for="spot-dept">Branch / Dept</label>
-            <input type="text" id="spot-dept" class="form-control" placeholder="Enter the department" />
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="spot-event">Primary Event</label>
+          <select id="spot-event" class="form-control form-select"></select>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="spot-food">Food Preference</label>
+          <select id="spot-food" class="form-control form-select">
+            <option value="Vegetarian">🥦 Vegetarian</option>
+            <option value="Non-Vegetarian">🍗 Non-Vegetarian</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="form-group">
+            <label class="form-label" for="spot-amount">Fee Collected (₹)</label>
+            <input type="number" id="spot-amount" class="form-control font-mono" value="250"
+              placeholder="Enter the fee amount" />
           </div>
-          <div class="grid grid-cols-2 gap-3 mb-3">
-            <div class="form-group">
-              <label class="form-label" for="spot-email">Email *</label>
-              <input type="email" id="spot-email" class="form-control" placeholder="Enter the email address" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="spot-phone">Phone *</label>
-              <input type="tel" id="spot-phone" class="form-control" placeholder="Enter the phone number" required />
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="spot-utr">Cash / UTR Ref</label>
+            <input type="text" id="spot-utr" class="form-control font-mono" value="CASH/DESK"
+              placeholder="Enter the cash / UTR reference" />
           </div>
-          <div class="form-group mb-3">
-            <label class="form-label" for="spot-event">Primary Event</label>
-            <select id="spot-event" class="form-control form-select"></select>
-          </div>
-          <div class="form-group mb-3">
-            <label class="form-label" for="spot-food">Food Preference</label>
-            <select id="spot-food" class="form-control form-select">
-              <option value="Vegetarian">🥦 Vegetarian</option>
-              <option value="Non-Vegetarian">🍗 Non-Vegetarian</option>
-            </select>
-          </div>
-          <div class="grid grid-cols-2 gap-3 mb-4">
-            <div class="form-group">
-              <label class="form-label" for="spot-amount">Fee Collected (₹)</label>
-              <input type="number" id="spot-amount" class="form-control font-mono" value="250"
-                placeholder="Enter the fee amount" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="spot-utr">Cash / UTR Ref</label>
-              <input type="text" id="spot-utr" class="form-control font-mono" value="CASH/DESK"
-                placeholder="Enter the cash / UTR reference" />
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary w-full py-3">Generate Spot Pass</button>
-        </form>
-      </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-full py-3">Generate Spot Pass</button>
+      </form>
     </div>
+  </div>
 
-    <!-- =====================================================================
+  <!-- =====================================================================
          FOOTER
          ===================================================================== -->
-    <footer class="footer">
-      <div class="shell">
-        <div class="footer-grid">
-          <div>
-            <h3 class="font-display font-bold text-xl text-gradient mb-3 tracking-wider">NEXORITHM 2026</h3>
-            <p class="text-xs text-slate-400 leading-relaxed max-w-sm mb-4">
-              Department Symposium organized by the Department of Computer Science &amp; Engineering (CSE) and
-              Artificial
-              Intelligence &amp; Data Science (AIDS),
-              Infant Jesus College of Engineering, affiliated with Anna University.
-            </p>
-            <div class="text-xs text-slate-500 font-mono">
-              Keelavallanadu, Thoothukudi - 628851, Tamil Nadu, India.
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-bold text-white uppercase font-mono mb-3">Quick Routes</h4>
-            <ul class="space-y-2 text-xs text-slate-400">
-              <li><a href="#home" class="hover:text-cyan-400">Home / Overview</a></li>
-              <li><a href="#events" class="hover:text-cyan-400">Technical Events</a></li>
-              <li><a href="#events" class="hover:text-cyan-400">Non-Technical Events</a></li>
-              <li><a href="#register" class="hover:text-cyan-400">Online Registration</a></li>
-              <li><a href="#admin" class="hover:text-cyan-400">Admin Portal</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-bold text-white uppercase font-mono mb-3">Staff Coordinators</h4>
-            <ul class="space-y-1.5 text-xs text-slate-400 font-mono">
-              <li><strong class="text-white">Mrs. Mohamed Ashiqa (HOD / CSE):</strong></li>
-              <li><strong class="text-white">Mrs. S. Mahalakshmi (AI&amp;DS):</strong></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-bold text-white uppercase font-mono mb-3">Student Leads</h4>
-            <ul class="space-y-1.5 text-xs text-slate-400 font-mono">
-              <li><strong class="text-white">Ms. M. Thangalakshmi - CSE</strong></li>
-              <li><strong class="text-white">Mr. V. Jagathish - CSE</strong></li>
-            </ul>
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <h3 class="font-display font-bold text-xl text-gradient mb-3 tracking-wider">NEXORITHM 2026</h3>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm mb-4">
+            Department Symposium organized by the Department of Computer Science &amp; Engineering (CSE) and
+            Artificial
+            Intelligence &amp; Data Science (AIDS),
+            Infant Jesus College of Engineering, affiliated with Anna University.
+          </p>
+          <div class="text-xs text-slate-500 font-mono">
+            Keelavallanadu, Thoothukudi - 628851, Tamil Nadu, India.
           </div>
         </div>
 
-        <div
-          class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-slate-500 font-mono">
-          <div>© 2026 Infant Jesus College of Engineering. Department of CSE &amp; AIDS.</div>
-          <div>Crafted with 3D WebGL &amp; Precision Engineering for Nexorithm 2026.</div>
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase font-mono mb-3">Quick Routes</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="#home" class="hover:text-cyan-400">Home / Overview</a></li>
+            <li><a href="#events" class="hover:text-cyan-400">Technical Events</a></li>
+            <li><a href="#events" class="hover:text-cyan-400">Non-Technical Events</a></li>
+            <li><a href="#register" class="hover:text-cyan-400">Online Registration</a></li>
+            <li><a href="#admin" class="hover:text-cyan-400">Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase font-mono mb-3">Staff Coordinators</h4>
+          <ul class="space-y-1.5 text-xs text-slate-400 font-mono">
+            <li><strong class="text-white">Ms. Jenifa - CSE</strong></li>
+            <li><strong class="text-white">Mrs. Deborah Sarah - CSE</strong></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase font-mono mb-3">Student Leads</h4>
+          <ul class="space-y-1.5 text-xs text-slate-400 font-mono">
+            <li><strong class="text-white">Ms. M. Thangalakshmi - CSE</strong></li>
+            <li><strong class="text-white">Mr. V. Jagathish - CSE</strong></li>
+          </ul>
         </div>
       </div>
-    </footer>
 
-    <!-- Core Application Logic Scripts -->
-    <script src="js/events-data.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/three-scene.js"></script>
-    <script src="js/registration.js"></script>
-    <script src="js/admin.js"></script>
-    <script src="js/router.js"></script>
-    <script src="js/app.js"></script>
-    <!-- Payment Screenshot Zoom Lightbox -->
-    <div id="screenshot-zoom-modal" class="modal-backdrop" onclick="window.closeScreenshotZoom()">
-      <div class="modal-close-btn" onclick="window.closeScreenshotZoom()">
-        <i data-lucide="x" class="w-4 h-4"></i>
+      <div
+        class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-slate-500 font-mono gap-3">
+        <div>© 2026 Infant Jesus College of Engineering. Department of CSE &amp; AIDS.</div>
+        <a href="https://www.instagram.com/nexorithm_2k26_cse" target="_blank" rel="noopener noreferrer"
+          class="flex items-center gap-2 text-slate-400 hover:text-pink-400 transition-colors duration-200"
+          style="text-decoration:none;">
+          <img src="assets/social-media-instagram-login-photography-png-favpng-4mfKp1smzStJQJWD1dqhPL5Ft.jpg"
+            alt="Instagram" style="width:18px;height:18px;border-radius:4px;object-fit:cover;flex-shrink:0;" />
+          <span style="font-size:14px;letter-spacing:0.05em;font-weight:600;">@nexorithm_2k26_cse</span>
+        </a>
+        <div>Crafted with 3D WebGL &amp; Precision Engineering for Nexorithm 2026.</div>
       </div>
-      <img id="screenshot-zoom-img" src="" alt="Payment Screenshot Zoomed"
-        style="max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.8);"
-        onclick="event.stopPropagation();" />
     </div>
+  </footer>
+
+  <!-- Core Application Logic Scripts -->
+  <script src="js/events-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/registration.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+  <!-- Payment Screenshot Zoom Lightbox -->
+  <div id="screenshot-zoom-modal" class="modal-backdrop" onclick="window.closeScreenshotZoom()">
+    <div class="modal-close-btn" onclick="window.closeScreenshotZoom()">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </div>
+    <img id="screenshot-zoom-img" src="" alt="Payment Screenshot Zoomed"
+      style="max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.8);"
+      onclick="event.stopPropagation();" />
+  </div>
 
 
 </body>

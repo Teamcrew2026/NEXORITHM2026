@@ -381,7 +381,7 @@ window.openEventModal = function (eventId) {
   if (coordsContainer && ev.coordinators) {
     let coordsHtml = '';
     ev.coordinators.forEach((c) => {
-      coordsHtml += `<div class="text-xs text-slate-300 mb-1"><strong class="text-white">${c.name}:</strong> <span class="font-mono text-cyan-300">${c.phone}</span></div>`;
+      coordsHtml += `<div class="text-xs text-slate-300 mb-1"><strong class="text-white">${c.name}</strong>${c.phone ? `: <span class="font-mono text-cyan-300">${c.phone}</span>` : ''}</div>`;
     });
     coordsContainer.innerHTML = coordsHtml;
   }

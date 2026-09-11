@@ -291,6 +291,21 @@ class NexRegistration {
       return;
     }
 
+    if (!this.uploadedScreenshotBase64) {
+      this.showToast('Payment screenshot is mandatory. Please upload your payment proof.', 'error');
+      const dropzone = document.getElementById('screenshot-dropzone');
+      if (dropzone) {
+        dropzone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        dropzone.style.borderColor = 'rgba(251,113,133,0.8)';
+        dropzone.style.boxShadow = '0 0 0 3px rgba(251,113,133,0.25)';
+        setTimeout(() => {
+          dropzone.style.borderColor = '';
+          dropzone.style.boxShadow = '';
+        }, 3000);
+      }
+      return;
+    }
+
     const regId = 'NX-' + Math.floor(1000 + Math.random() * 9000);
 
     const registrationRecord = {
@@ -532,6 +547,9 @@ window.addFriendEntry = function () {
     padding: 14px 16px;
     position: relative;
     animation: fadeInUp 0.25s ease;
+    min-width: 280px;
+    width: 280px;
+    flex-shrink: 0;
   `;
 
   card.innerHTML = `
