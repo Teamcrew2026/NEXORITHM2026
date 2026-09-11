@@ -434,5 +434,20 @@ function initHorizontalScroll() {
  * Anchor-link smooth scroll is handled by `html { scroll-behavior: smooth }` in CSS.
  */
 function initLenisSmoothScroll() {
-  // Native scroll is used — no JS smooth scroll library needed.
+  if (typeof Lenis === 'undefined') return;
+
+  // Optimized for production to reduce lag on lower-end devices
+  window.lenis = new Lenis({
+    lerp: 0.1, // lerp is generally more performant than a fixed duration easing
+    smoothWheel: true,
+    smoothTouch: false, // Critical: JS scroll on mobile causes severe lag. Keep native mobile scroll.
+    wheelMultiplier: 0.9, 
+    syncTouch: false
+  });
+
+  function raf(time) {
+    window.lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
 }
