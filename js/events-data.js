@@ -194,8 +194,8 @@ const EVENTS_DATA = [
     icon: 'eye-off',
     tagline: 'Trust Your Instincts. Complete the Challenge Blind.',
     description: 'Complete a given task while blindfolded, following the organizers’ instructions carefully.',
-    teamSize: 'Individual',
-    maxTeam: 1,
+    teamSize: 'To Be Announced',
+    maxTeam: 5,
     timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
