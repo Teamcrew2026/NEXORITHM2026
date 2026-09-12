@@ -17,7 +17,6 @@ const EVENTS_DATA = [
     description: 'Showcase your novel technical research papers, innovative startup concepts, or engineering capstone prototypes in AI/ML, Cloud, Cyber Security, IoT, and Data Science.',
     teamSize: '1 - 5 Members',
     maxTeam: 3,
-    timing: '10:30 AM - 01:00 PM',
     venue: 'IJCE Seminar Hall (Auditorium Block)',
     coordinators: [
       { name: 'Simiyon (Final Year CSE)', phone: '+91 9087575137' },
@@ -51,7 +50,6 @@ const EVENTS_DATA = [
     description: 'Tackle syntax, logical, and runtime errors in given programs under strict time limits.',
     teamSize: '1 Member',
     maxTeam: 1,
-    timing: '10:45 AM - 12:30 PM',
     venue: 'Software Systems Lab (Lab 1)',
     coordinators: [
       { name: 'Kaviyarsan (Final Year CSE)', phone: '+91 7845127211' },
@@ -86,7 +84,6 @@ const EVENTS_DATA = [
     description: 'Craft an effective prompt on a surprise theme and submit the prompt along with its generated output within the time limit.',
     teamSize: '1 Member',
     maxTeam: 1,
-    timing: '01:45 PM - 03:15 PM',
     venue: 'AI & Data Science Lab (Lab 4)',
     coordinators: [
       { name: 'Anitha (4th Year CSE)', phone: '+91 9360435045' },
@@ -125,7 +122,6 @@ const EVENTS_DATA = [
     description: 'A team challenge where one member gives clues while the other two race to find the hidden Tamil words.',
     teamSize: '3 Members',
     maxTeam: 3,
-    timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
       { name: 'Jaimalini (4th Year CSE)', phone: '+91 9361657711' },
@@ -160,7 +156,6 @@ const EVENTS_DATA = [
     description: 'Squad up and battle it out in Free Fire for ultimate campus esports supremacy, following the organizers’ match instructions.',
     teamSize: '4 Members',
     maxTeam: 4,
-    timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
       { name: 'Vasanthakumar(4th Year CSE)', phone: '+91 8072254953' },
@@ -196,7 +191,6 @@ const EVENTS_DATA = [
     description: 'Complete a given task while blindfolded, following the organizers’ instructions carefully.',
     teamSize: 'To Be Announced',
     maxTeam: 5,
-    timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
       { name: 'Aarthi (Final Year CSE)', phone: '+91 9342202985' },
@@ -227,7 +221,6 @@ const EVENTS_DATA = [
     description: 'Create a creative model using provided waste and junk materials, built entirely during the event.',
     teamSize: 'To Be Announced',
     maxTeam: 3,
-    timing: 'To Be Announced',
     venue: 'To Be Announced',
     coordinators: [
       { name: 'Madhumitha (4th year CSE)', phone: '+91 9677830490' },

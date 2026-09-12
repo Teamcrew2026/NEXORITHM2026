@@ -295,9 +295,8 @@ function initEventsRenderer() {
           <p class="text-xs text-brand-purple font-mono mb-3 font-semibold">${ev.tagline}</p>
           <p class="text-sm text-slate-300 mb-5 leading-relaxed line-clamp-3">${ev.description}</p>
 
-          <div class="grid grid-cols-2 gap-2 text-xs text-slate-400 font-mono mb-6 pt-3 border-t border-white/10">
+          <div class="grid grid-cols-1 gap-2 text-xs text-slate-400 font-mono mb-6 pt-3 border-t border-white/10">
             <div><i data-lucide="users" class="w-3.5 h-3.5 inline mr-1 text-slate-500"></i> ${ev.teamSize}</div>
-            <div><i data-lucide="clock" class="w-3.5 h-3.5 inline mr-1 text-slate-500"></i> ${ev.timing}</div>
           </div>
 
           <div class="flex items-center gap-2 mt-auto">
@@ -348,7 +347,7 @@ window.openEventModal = function (eventId) {
   document.getElementById('modal-ev-tagline').textContent = ev.tagline;
   document.getElementById('modal-ev-desc').textContent = ev.description;
   document.getElementById('modal-ev-team').textContent = ev.teamSize;
-  document.getElementById('modal-ev-timing').textContent = ev.timing;
+  // Timing removed from individual events
   document.getElementById('modal-ev-venue').textContent = ev.venue;
 
   // Rounds
