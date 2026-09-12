@@ -57,9 +57,10 @@
   <div id="preloader">
     <div class="flex flex-col items-center justify-between" style="width: 100%; height: 100vh; padding: 4rem 1rem; box-sizing: border-box; text-align: center; overflow: hidden;">
       
-      <!-- Top -->
-      <div style="flex: 1; display: flex; align-items: flex-start; justify-content: center;">
+      <!-- Top Text Cluster -->
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
         <h2 class="font-display font-bold text-3xl text-gradient tracking-widest" style="word-wrap: break-word; max-width: 100%;">NEXORITHM 2026</h2>
+        <p class="font-mono text-xs text-brand-cyan tracking-wider mt-2" style="word-wrap: break-word; max-width: 100%;">INITIALIZING NEURAL MATRIX...</p>
       </div>
 
       <!-- Center Progress -->
@@ -69,10 +70,8 @@
         </div>
       </div>
 
-      <!-- Bottom -->
-      <div style="flex: 1; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 2rem;">
-        <p class="font-mono text-xs text-brand-cyan tracking-wider" style="word-wrap: break-word; max-width: 100%;">INITIALIZING NEURAL MATRIX...</p>
-      </div>
+      <!-- Empty Bottom (to keep flex balance) -->
+      <div style="flex: 1;"></div>
       
     </div>
   </div>
