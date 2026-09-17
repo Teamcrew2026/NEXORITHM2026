@@ -308,6 +308,19 @@ class NexRegistration {
 
     const regId = 'NX-' + Math.floor(1000 + Math.random() * 9000);
 
+    // Collect optional friends data from friend cards
+    const friendCards = document.querySelectorAll('#friends-list-container [id^="friend-card-"]');
+    const friends = [];
+    friendCards.forEach((card) => {
+      const phoneInput = card.querySelector('input[name^="friend_phone_"]');
+      const collegeInput = card.querySelector('input[name^="friend_college_"]');
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const college = collegeInput ? collegeInput.value.trim() : '';
+      if (phone || college) {
+        friends.push({ phone, college });
+      }
+    });
+
     const registrationRecord = {
       id: regId,
       fullName,
@@ -325,6 +338,7 @@ class NexRegistration {
       transactionId,
       screenshot: this.uploadedScreenshotBase64,
       paymentVerified: true,
+      friends,
       timestamp: new Date().toISOString()
     };
 

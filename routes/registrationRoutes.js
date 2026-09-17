@@ -29,7 +29,8 @@ router.post('/', async (req, res) => {
       utr,
       screenshot,
       paymentVerified,
-      isSpot
+      isSpot,
+      friends
     } = req.body;
 
     const actualName = (fullName || name || '').trim();
@@ -40,6 +41,17 @@ router.post('/', async (req, res) => {
     const actualPhone = (phone || '').trim();
     const actualUtr = (transactionId || utr || '').trim();
     const actualAmount = parseFloat(amount) || 250.00;
+
+    // Sanitize friends array — keep only entries with at least a phone or college
+    let actualFriends = [];
+    if (Array.isArray(friends)) {
+      actualFriends = friends
+        .filter(f => f && (f.phone || f.college))
+        .map(f => ({
+          phone: (f.phone || '').trim(),
+          college: (f.college || '').trim()
+        }));
+    }
 
     // Validation
     if (!actualName) {
@@ -100,7 +112,8 @@ router.post('/', async (req, res) => {
       paymentMethod: paymentMethod || 'UPI / GPay',
       transactionId: actualUtr,
       screenshot: screenshotPath,
-      paymentVerified: paymentVerified !== undefined ? Boolean(paymentVerified) : true
+      paymentVerified: paymentVerified !== undefined ? Boolean(paymentVerified) : true,
+      friends: actualFriends
     };
 
     const saved = await Registration.findOneAndUpdate(

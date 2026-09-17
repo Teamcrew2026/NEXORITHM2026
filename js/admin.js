@@ -334,6 +334,7 @@ class NexAdmin {
           <td>
             <div class="font-semibold text-white">${reg.fullName}</div>
             <div class="text-xs text-slate-400 font-mono">${reg.email} • ${reg.phone}</div>
+            ${reg.friends && reg.friends.length > 0 ? `<span class="badge badge-purple text-[10px] mt-1 inline-flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i>+${reg.friends.length} friend${reg.friends.length > 1 ? 's' : ''}</span>` : ''}
           </td>
           <td>
             <div class="text-xs text-slate-300 max-w-[200px] truncate" title="${reg.college}">${reg.college}</div>
@@ -457,6 +458,42 @@ class NexAdmin {
 
     modal.classList.add('is-open');
     forceFullScreenModal(modal);
+
+    // Render friends table
+    const friendsSection = document.getElementById('modal-detail-friends-section');
+    const friendsBody = document.getElementById('modal-detail-friends-body');
+    if (friendsBody) {
+      if (record.friends && record.friends.length > 0) {
+        if (friendsSection) friendsSection.classList.remove('hidden');
+        let friendsHtml = `
+          <table style="width:100%; border-collapse:separate; border-spacing:0; font-size:12px;">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px 12px; font-family:var(--font-mono); font-size:10px; color:rgba(148,163,184,0.8); text-transform:uppercase; letter-spacing:0.08em; border-bottom:1px solid rgba(255,255,255,0.08);">#</th>
+                <th style="text-align:left; padding:8px 12px; font-family:var(--font-mono); font-size:10px; color:rgba(148,163,184,0.8); text-transform:uppercase; letter-spacing:0.08em; border-bottom:1px solid rgba(255,255,255,0.08);">Phone Number</th>
+                <th style="text-align:left; padding:8px 12px; font-family:var(--font-mono); font-size:10px; color:rgba(148,163,184,0.8); text-transform:uppercase; letter-spacing:0.08em; border-bottom:1px solid rgba(255,255,255,0.08);">College</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        record.friends.forEach((f, idx) => {
+          friendsHtml += `
+            <tr style="background:${idx % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent'};">
+              <td style="padding:8px 12px; color:rgba(0,240,255,0.7); font-family:var(--font-mono); font-weight:600;">${idx + 1}</td>
+              <td style="padding:8px 12px; color:#ffffff; font-family:var(--font-mono);">${f.phone || '—'}</td>
+              <td style="padding:8px 12px; color:rgba(226,232,240,0.9);">${f.college || '—'}</td>
+            </tr>
+          `;
+        });
+        friendsHtml += '</tbody></table>';
+        friendsHtml += `<div style="margin-top:6px; font-size:11px; font-family:var(--font-mono); color:rgba(52,211,153,0.8);">Total friends registered: ${record.friends.length}</div>`;
+        friendsBody.innerHTML = friendsHtml;
+      } else {
+        if (friendsSection) friendsSection.classList.remove('hidden');
+        friendsBody.innerHTML = '<div class="text-xs text-slate-500 p-3 bg-white/5 rounded text-center font-mono">No additional friends registered with this delegate.</div>';
+      }
+    }
+
     if (window.lucide) lucide.createIcons();
   }
 

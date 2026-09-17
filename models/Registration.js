@@ -88,6 +88,13 @@ const registrationSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  friends: {
+    type: [{
+      phone: { type: String, trim: true },
+      college: { type: String, trim: true }
+    }],
+    default: []
+  },
   createdAt: {
     type: Date,
     default: Date.now,
