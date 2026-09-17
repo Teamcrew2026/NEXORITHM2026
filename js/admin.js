@@ -218,7 +218,7 @@ class NexAdmin {
     if (tbody) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="7" class="text-center py-8 text-slate-400">
+          <td colspan="8" class="text-center py-8 text-slate-400">
             <div class="inline-flex items-center gap-3">
               <span class="spinner-border spinner-border-sm"></span> Loading registrations...
             </div>
@@ -243,7 +243,7 @@ class NexAdmin {
       if (tbody) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="7" class="text-center py-8 text-slate-400">
+            <td colspan="8" class="text-center py-8 text-slate-400">
               Could not load registrations: ${err.message || 'Unknown error'}
             </td>
           </tr>
@@ -298,7 +298,7 @@ class NexAdmin {
     if (this.filteredRegistrations.length === 0) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="7" class="text-center py-10 text-slate-400">
+          <td colspan="8" class="text-center py-10 text-slate-400">
             <i data-lucide="search-x" class="w-8 h-8 mx-auto mb-2 text-slate-500"></i>
             No registration records found matching the filter criteria.
           </td>
@@ -334,7 +334,6 @@ class NexAdmin {
           <td>
             <div class="font-semibold text-white">${reg.fullName}</div>
             <div class="text-xs text-slate-400 font-mono">${reg.email} • ${reg.phone}</div>
-            ${reg.friends && reg.friends.length > 0 ? `<span class="badge badge-purple text-[10px] mt-1 inline-flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i>+${reg.friends.length} friend${reg.friends.length > 1 ? 's' : ''}</span>` : ''}
           </td>
           <td>
             <div class="text-xs text-slate-300 max-w-[200px] truncate" title="${reg.college}">${reg.college}</div>
@@ -347,6 +346,9 @@ class NexAdmin {
             <div class="font-mono font-bold text-white">₹${reg.amount}</div>
             <div class="text-[11px] text-slate-400 font-mono truncate max-w-[120px]" title="${reg.transactionId}">${reg.transactionId}</div>
             <div class="mt-1">${verifiedBadge}</div>
+          </td>
+          <td>
+            ${reg.friends && reg.friends.length > 0 ? reg.friends.map((f, i) => `<div class="text-xs mb-1" style="line-height:1.4;"><span class="text-cyan-400 font-mono font-bold">${i + 1}.</span> <span class="text-white font-mono">${f.phone || '—'}</span> <span class="text-slate-400">•</span> <span class="text-slate-300">${f.college || '—'}</span></div>`).join('') : '<span class="text-xs text-slate-500 font-mono">None</span>'}
           </td>
           <td class="text-xs text-slate-400 whitespace-nowrap">${dateStr}</td>
           <td class="whitespace-nowrap">
