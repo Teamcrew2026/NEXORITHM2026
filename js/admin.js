@@ -591,7 +591,8 @@ class NexAdmin {
     const dept = document.getElementById('spot-dept')?.value.trim();
     const email = document.getElementById('spot-email')?.value.trim();
     const phone = document.getElementById('spot-phone')?.value.trim();
-    const eventId = document.getElementById('spot-event')?.value;
+    const techEventId = document.getElementById('spot-event-tech')?.value;
+    const nonTechEventId = document.getElementById('spot-event-nontech')?.value;
     const amount = Number(document.getElementById('spot-amount')?.value) || 250;
     const utr = document.getElementById('spot-utr')?.value.trim() || 'CASH/SPOT-ENTRY';
     const foodPreference = document.getElementById('spot-food')?.value || 'Vegetarian';
@@ -600,6 +601,13 @@ class NexAdmin {
       alert('Please fill required fields.');
       return;
     }
+
+    if (!techEventId || !nonTechEventId) {
+      alert('Please select both a Technical and a Non-Technical event.');
+      return;
+    }
+
+    const spotEvents = [techEventId, nonTechEventId].filter(Boolean);
 
     const regId = 'NX-SPOT-' + Math.floor(1000 + Math.random() * 9000);
     const newEntry = {
@@ -610,7 +618,7 @@ class NexAdmin {
       year: 'Spot Entry',
       email,
       phone,
-      events: [eventId],
+      events: spotEvents,
       teamSize: 1,
       teamMembers: [name],
       amount,
@@ -655,14 +663,26 @@ window.closeAdminDetailModal = function() {
 window.openSpotModal = function() {
   const modal = document.getElementById('spot-modal');
   if (modal) {
-    const eventSelect = document.getElementById('spot-event');
-    if (eventSelect) {
-      let options = '';
-      EVENTS_DATA.forEach((ev) => {
-        options += `<option value="${ev.id}">${ev.title} (${ev.category})</option>`;
+    // Populate Technical events dropdown
+    const techSelect = document.getElementById('spot-event-tech');
+    if (techSelect) {
+      let techOpts = '<option value="">-- Select Technical --</option>';
+      EVENTS_DATA.filter(ev => ev.category === 'technical').forEach((ev) => {
+        techOpts += `<option value="${ev.id}">${ev.title}</option>`;
       });
-      eventSelect.innerHTML = options;
+      techSelect.innerHTML = techOpts;
     }
+
+    // Populate Non-Technical events dropdown
+    const nonTechSelect = document.getElementById('spot-event-nontech');
+    if (nonTechSelect) {
+      let nonTechOpts = '<option value="">-- Select Non-Technical --</option>';
+      EVENTS_DATA.filter(ev => ev.category === 'non-technical').forEach((ev) => {
+        nonTechOpts += `<option value="${ev.id}">${ev.title}</option>`;
+      });
+      nonTechSelect.innerHTML = nonTechOpts;
+    }
+
     modal.classList.add('is-open');
     if (window.lucide) lucide.createIcons();
   }
