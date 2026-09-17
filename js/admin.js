@@ -330,7 +330,10 @@ class NexAdmin {
 
       rowsHtml += `
         <tr class="admin-table-row">
-          <td class="font-mono text-brand-cyan font-bold whitespace-nowrap">${reg.id}</td>
+          <td class="font-mono text-brand-cyan font-bold whitespace-nowrap">
+            ${reg.id}
+            ${reg.id.includes('SPOT') ? '<div class="mt-1"><span class="badge badge-amber text-[9px]">⚡ SPOT ENTRY</span></div>' : '<div class="mt-1"><span class="badge badge-emerald text-[9px]">🌐 ONLINE</span></div>'}
+          </td>
           <td>
             <div class="font-semibold text-white">${reg.fullName}</div>
             <div class="text-xs text-slate-400 font-mono">${reg.email} • ${reg.phone}</div>
